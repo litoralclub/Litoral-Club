@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Gorra Snapback Litoral 90s",
+    "category": "Snapback",
+    "price": 24000,
+    "badge": "DESTACADO",
+    "image": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600&q=80",
+    "description": "Visera plana rígida, bordado frontal 3D en hilo premium."
+  },
+  {
+    "id": 2,
+    "name": "Gorra Trucker Club Vintage Black",
+    "category": "Trucker",
+    "price": 21500,
+    "badge": "OFERTA",
+    "image": "https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=600&q=80",
+    "description": "Frente acolchado con parche de cuero y malla respirable."
+  },
+  {
+    "id": 3,
+    "name": "Dad Cap Washed Brown",
+    "category": "Dad Cap",
+    "price": 19800,
+    "badge": "NUEVO",
+    "image": "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=600&q=80",
+    "description": "100% gabardina prelavada, visera curva y hebilla de metal."
+  },
+  {
+    "id": 4,
+    "name": "Gorra 5-Panel Street Camp",
+    "category": "5-Panel",
+    "price": 23000,
+    "badge": "LIMITADO",
+    "image": "https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600&q=80",
+    "description": "Diseño skater urbano de 5 paneles con correa de nylon."
+  },
+  {
+    "id": 5,
+    "name": "Gorra Trucker Litoral Two-Tone",
+    "category": "Trucker",
+    "price": 22000,
+    "badge": "",
+    "image": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80",
+    "description": "Combinación bicolor blanco y negro con logo bordado."
+  },
+  {
+    "id": 6,
+    "name": "Gorra Snapback All-Black Stealth",
+    "category": "Snapback",
+    "price": 25000,
+    "badge": "POPULAR",
+    "image": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&q=80",
+    "description": "Bordado negro sobre negro con tela microfibra resistente al agua."
+  }
+]

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Litoral Club | Headwear & Streetwear</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Barra Superior de Avisos -->
+  <div class="top-bar">
+    ⚡ ENVIOS A TODO EL PAIS • COMPRA DIRECTA POR WHATSAPP • LITORAL CLUB HEADWEAR
+  </div>
+
+  <!-- Header / Navbar estilo DC Shoes -->
+  <header class="header-nav">
+    <!-- Izquierda: Navegación -->
+    <nav class="nav-left">
+      <ul>
+        <li><a href="javascript:void(0)" onclick="switchTab('inicio')" class="nav-link active" id="tab-inicio">Inicio</a></li>
+        <li><a href="javascript:void(0)" onclick="switchTab('productos')" class="nav-link" id="tab-productos">Gorras</a></li>
+        <li><a href="javascript:void(0)" onclick="switchTab('contacto')" class="nav-link" id="tab-contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <!-- Centro: Logo Litoral Club -->
+    <div class="logo-center" onclick="switchTab('inicio')">
+      <!-- Si tienes imagen de logo, ponla en assets/logo.png y descomenta la linea de abajo: -->
+      <!-- <img src="assets/logo.png" alt="Litoral Club" class="brand-logo-img"> -->
+      <div class="brand-title">LITORAL CLUB</div>
+      <div class="brand-subtitle">HEADWEAR & APPAREL</div>
+    </div>
+
+    <!-- Derecha: Buscador y Carrito -->
+    <div class="nav-right">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="BUSCAR GORRA..." oninput="handleSearch()">
+      </div>
+      <button class="cart-btn" onclick="toggleCart(true)">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span id="cart-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- PESTAÑA 1: INICIO -->
+  <main id="view-inicio" class="tab-view">
+    <!-- Banner Principal con Promociones -->
+    <section class="hero-banner">
+      <!-- Imagen de fondo del banner principal -->
+      <img src="https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=1600&q=80" alt="Banner Litoral Club" class="hero-bg-img">
+      <div class="hero-content">
+        <span class="hero-tag">DROP EXCLUSIVO</span>
+        <h1 class="hero-title">LITORAL CLUB COLLECTION</h1>
+        <p class="hero-desc">Gorras Snapback, Dad Caps y Truckers diseñadas para la cultura urbana y streetwear.</p>
+        <button class="btn-dc" onclick="switchTab('productos')">EXPLORAR CATALOGO</button>
+      </div>
+    </section>
+
+    <!-- Banners Secundarios de Colecciones -->
+    <section class="promo-grid">
+      <div class="promo-card" onclick="filterAndGo('Trucker')">
+        <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80" alt="Trucker Caps">
+        <div class="promo-info">
+          <h3>LINEA TRUCKER</h3>
+          <p>Malla reforzada & parches bordados</p>
+        </div>
+      </div>
+      <div class="promo-card" onclick="filterAndGo('Snapback')">
+        <img src="https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=800&q=80" alt="Snapbacks">
+        <div class="promo-info">
+          <h3>SNAPBACKS CLÁSICAS</h3>
+          <p>Visera plana con ajuste personalizado</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Destacados en Inicio -->
+    <div class="section-header">
+      <h2>DESTACADOS DEL CLUB</h2>
+      <a href="javascript:void(0)" onclick="switchTab('productos')" class="see-all-link">VER TODO</a>
+    </div>
+    <div id="featured-grid" class="products-grid"></div>
+  </main>
+
+  <!-- PESTAÑA 2: PRODUCTOS -->
+  <main id="view-productos" class="tab-view" style="display: none;">
+    <div class="section-header" style="padding-top: 2rem;">
+      <h2>CATÁLOGO DE GORRAS</h2>
+    </div>
+
+    <!-- Filtros de categoría -->
+    <div class="filter-bar" id="category-pills"></div>
+
+    <!-- Grilla completa de productos -->
+    <div id="catalog-grid" class="products-grid"></div>
+  </main>
+
+  <!-- PESTAÑA 3: CONTACTO -->
+  <main id="view-contacto" class="tab-view" style="display: none;">
+    <div class="contact-container">
+      <h2>LITORAL CLUB CUSTOMER CARE</h2>
+      <p>Consultanos disponibilidad, ventas por mayor o pedidos especiales directamente con nuestro equipo.</p>
+      <div class="contact-grid">
+        <a id="wa-contact-link" href="#" target="_blank" class="contact-link-btn wa">
+          <i class="fa-brands fa-whatsapp"></i> ATENCIÓN POR WHATSAPP
+        </a>
+        <a href="https://instagram.com" target="_blank" class="contact-link-btn ig">
+          <i class="fa-brands fa-instagram"></i> SEGUINOS EN INSTAGRAM
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Drawer / Modal del Carrito Lateral -->
+  <div class="cart-drawer" id="cart-drawer" onclick="handleDrawerBackdrop(event)">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <h3>TU PEDIDO</h3>
+        <span class="close-drawer" onclick="toggleCart(false)">&times;</span>
+      </div>
+      <div class="drawer-items" id="drawer-items"></div>
+      <div class="drawer-footer">
+        <div class="drawer-total">
+          <span>TOTAL:</span>
+          <span id="drawer-total-price">$0</span>
+        </div>
+        <button class="btn-wa-checkout" onclick="checkoutWhatsApp()">
+          <i class="fa-brands fa-whatsapp"></i> PEDIR POR WHATSAPP
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
