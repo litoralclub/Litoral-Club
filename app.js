@@ -1,5 +1,5 @@
 // --- CONFIGURACIÓN DEL NEGOCIO ---
-const WHATSAPP_PHONE = "5491112345678"; // Reemplazá por tu número de WhatsApp con código de país
+const WHATSAPP_PHONE = "543447542312"; // Reemplazá por tu número de WhatsApp con código de país
 
 let gorrasDB = [];
 let cart = JSON.parse(localStorage.getItem('litoral_cart')) || [];
