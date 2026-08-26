@@ -40,7 +40,7 @@ body {
   text-overflow: ellipsis;
 }
 
-/* Header / Navbar DC Shoes */
+/* Header de 3 Columnas: Izquierda (Logo) - Centro (Pestañas) - Derecha (Buscador/Carrito) */
 .header-nav {
   position: sticky;
   top: 0;
@@ -49,16 +49,56 @@ body {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-dark);
   padding: 0.8rem 4%;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
-.nav-left ul {
+/* 1. Logo a la Izquierda */
+.logo-left {
+  text-align: left;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-logo-img {
+  max-height: 36px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 2px;
+}
+
+.brand-title {
+  font-family: var(--font-stack);
+  font-size: 1.6rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  line-height: 1;
+  color: #fff;
+}
+
+.brand-subtitle {
+  font-size: 0.52rem;
+  font-weight: 900;
+  letter-spacing: 2.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* 2. Pestañas en el Centro */
+.nav-center {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-center ul {
   display: flex;
   list-style: none;
-  gap: 1.4rem;
+  gap: 1.6rem;
 }
 
 .nav-link {
@@ -71,52 +111,27 @@ body {
   cursor: pointer;
   padding: 0.3rem 0;
   transition: color 0.2s ease;
+  position: relative;
 }
 
 .nav-link:hover, .nav-link.active {
   color: var(--text-white);
 }
 
-.nav-link.active {
-  border-bottom: 2px solid #fff;
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #fff;
 }
 
-.logo-center {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-}
-
-.main-logo-img {
-  max-height: 40px;
-  width: auto;
-  object-fit: contain;
-  margin-bottom: 4px;
-}
-
-.brand-title {
-  font-family: var(--font-stack);
-  font-size: 1.7rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  line-height: 1;
-  color: #fff;
-}
-
-.brand-subtitle {
-  font-size: 0.55rem;
-  font-weight: 900;
-  letter-spacing: 3px;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  margin-top: 2px;
-}
-
+/* 3. Buscador y Carrito a la Derecha */
 .nav-right {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   gap: 0.6rem;
 }
@@ -134,13 +149,6 @@ body {
 .search-wrapper.active {
   background: #222;
   border-color: #666;
-}
-
-.side-logo-img {
-  height: 22px;
-  width: auto;
-  object-fit: contain;
-  margin-right: 4px;
 }
 
 .search-toggle-btn {
@@ -195,43 +203,42 @@ body {
   flex-shrink: 0;
 }
 
-/* Celulares */
+/* ==================== AJUSTES RESPONSIVOS (CELULARES) ==================== */
 @media (max-width: 768px) {
   .header-nav {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr auto;
     grid-template-areas: 
-      "logo logo"
-      "menu tools";
-    row-gap: 0.7rem;
-    padding: 0.6rem 3%;
+      "logo tools"
+      "menu menu";
+    row-gap: 0.6rem;
+    padding: 0.6rem 4%;
   }
 
-  .logo-center {
+  .logo-left {
     grid-area: logo;
   }
 
   .brand-title {
-    font-size: 1.45rem;
-  }
-
-  .nav-left {
-    grid-area: menu;
-    display: flex;
-    align-items: center;
-  }
-
-  .nav-left ul {
-    gap: 0.7rem;
-  }
-
-  .nav-link {
-    font-size: 0.75rem;
+    font-size: 1.4rem;
   }
 
   .nav-right {
     grid-area: tools;
-    justify-content: flex-end;
+  }
+
+  .nav-center {
+    grid-area: menu;
+    justify-content: flex-start;
+    border-top: 1px solid var(--border-dark);
+    padding-top: 0.4rem;
+  }
+
+  .nav-center ul {
+    gap: 1.2rem;
+  }
+
+  .nav-link {
+    font-size: 0.78rem;
   }
 
   .search-wrapper.active .search-input-collapsible {
@@ -239,11 +246,11 @@ body {
   }
 }
 
-/* Hero Banner */
+/* ==================== HERO BANNER PRINCIPAL ==================== */
 .hero-banner {
   position: relative;
-  height: 68vh;
-  min-height: 420px;
+  height: 70vh;
+  min-height: 440px;
   background: #111;
   display: flex;
   align-items: center;
@@ -260,8 +267,8 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.5;
-  filter: contrast(110%);
+  opacity: 0.45;
+  filter: contrast(115%);
 }
 
 .hero-content {
@@ -285,7 +292,7 @@ body {
 
 .hero-title {
   font-family: var(--font-stack);
-  font-size: clamp(2rem, 7vw, 4.2rem);
+  font-size: clamp(2.2rem, 7vw, 4.2rem);
   text-transform: uppercase;
   line-height: 0.95;
   letter-spacing: 1px;
@@ -319,7 +326,7 @@ body {
   background: #e2e2e2;
 }
 
-/* Banners Secundarios */
+/* ==================== BANNERS SECUNDARIOS ==================== */
 .promo-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -382,7 +389,7 @@ body {
   text-transform: uppercase;
 }
 
-/* Grilla de Productos */
+/* ==================== GRILLA DE PRODUCTOS ==================== */
 .section-header {
   padding: 0 4%;
   display: flex;
@@ -539,7 +546,7 @@ body {
   color: #000;
 }
 
-/* Contacto */
+/* ==================== CONTACTO ==================== */
 .contact-container {
   max-width: 520px;
   margin: 3rem auto;
@@ -591,7 +598,7 @@ body {
   border: 1px solid var(--border-dark);
 }
 
-/* Carrito Drawer */
+/* ==================== CARRITO DRAWER ==================== */
 .cart-drawer {
   display: none;
   position: fixed;
