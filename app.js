@@ -203,3 +203,28 @@ function checkoutWhatsApp() {
 
 // Iniciar al cargar la web
 window.onload = loadProducts;
+
+function toggleSearch() {
+  const wrapper = document.getElementById('searchWrapper');
+  const input = document.getElementById('searchInput');
+  
+  wrapper.classList.toggle('active');
+
+  if (wrapper.classList.contains('active')) {
+    input.focus();
+  } else {
+    input.value = '';
+    handleSearch(); // Restablece los productos si se cierra el buscador
+  }
+}
+
+// Cierra el buscador si hacés clic fuera de él
+document.addEventListener('click', function(event) {
+  const wrapper = document.getElementById('searchWrapper');
+  if (wrapper && !wrapper.contains(event.target) && wrapper.classList.contains('active')) {
+    const input = document.getElementById('searchInput');
+    if (input && input.value.trim() === '') {
+      wrapper.classList.remove('active');
+    }
+  }
+});
