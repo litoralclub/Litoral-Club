@@ -1,230 +1,324 @@
-// --- CONFIGURACIÓN DEL NEGOCIO ---
-const WHATSAPP_PHONE = "543447542312"; // Reemplazá por tu número de WhatsApp con código de país
+// CONFIGURACIÓN DE TU TIENDA LITORAL CLUB
+const CONFIG = {
+  whatsappNumber: '5493487625552', // Tu número con código de país
+  currencySymbol: '$',
+};
 
-let gorrasDB = [];
+// CATÁLOGO DE PRODUCTOS (Podés poner varias imágenes en "images" para que se puedan deslizar)
+const PRODUCTS = [
+  {
+    id: 1,
+    name: 'GORRA TRUCKER BLACK ICON',
+    category: 'Trucker',
+    price: 18500,
+    badge: 'BEST SELLER',
+    desc: 'Trucker clásica con frente acolchado, bordado frontal de alta densidad y malla respirable premium.',
+    images: [
+      'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80',
+      'https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=800&q=80',
+      'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=800&q=80'
+    ]
+  },
+  {
+    id: 2,
+    name: 'SNAPBACK LITORAL CORE WHITE',
+    category: 'Snapback',
+    price: 21000,
+    badge: 'NUEVO DROP',
+    desc: 'Snapback estructura rígida de 6 paneles, visera plana con sticker de autenticidad y calce streetwear.',
+    images: [
+      'https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=800&q=80',
+      'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80'
+    ]
+  },
+  {
+    id: 3,
+    name: 'DAD CAP VINTAGE WASHED',
+    category: 'Dad Cap',
+    price: 17500,
+    badge: 'LIMITED',
+    desc: 'Algodón 100% gastado estilo vintage, visera curva y hebilla metálica trasera regulable.',
+    images: [
+      'https://images.unsplash.com/photo-1521369909029-2afed882baee?w=800&q=80',
+      'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80'
+    ]
+  },
+  {
+    id: 4,
+    name: 'TRUCKER BEIGE & BROWN SPECIAL',
+    category: 'Trucker',
+    price: 19500,
+    badge: 'DROP 2026',
+    desc: 'Combinación bicolor en tonos tierra, visera semicurva y etiqueta tejida lateral.',
+    images: [
+      'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=800&q=80',
+      'https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=800&q=80'
+    ]
+  }
+];
+
 let cart = JSON.parse(localStorage.getItem('litoral_cart')) || [];
-let currentCategory = 'all';
+let activeCategory = 'TODAS';
+let currentModalProduct = null;
+let currentModalImgIndex = 0;
 
-// 1. Cargar productos desde products.json
-async function loadProducts() {
-  try {
-    const res = await fetch('products.json');
-    gorrasDB = await res.json();
-    renderFeatured();
-    renderCatalog(gorrasDB);
-    buildCategoryPills();
-    updateCartUI();
-    document.getElementById('wa-contact-link').href = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola Litoral Club! Quiero hacer una consulta sobre sus gorras.')}`;
-  } catch (err) {
-    console.error("Error cargando productos:", err);
+document.addEventListener('DOMContentLoaded', () => {
+  renderCategories();
+  renderProducts();
+  updateCartUI();
+
+  const waLink = document.getElementById('wa-contact-link');
+  if (waLink) {
+    waLink.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent('¡Hola Litoral Club! Quería hacer una consulta sobre las gorras.')}`;
   }
-}
+});
 
-// 2. Control de pestañas (Inicio, Gorras, Contacto)
-function switchTab(tabId) {
-  document.querySelectorAll('.tab-view').forEach(v => v.style.display = 'none');
-  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-
-  document.getElementById(`view-${tabId}`).style.display = 'block';
-  const activeNav = document.getElementById(`tab-${tabId}`);
-  if (activeNav) activeNav.classList.add('active');
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// 3. Renderizar tarjetas de gorras
-function renderGorraCard(g) {
-  return `
-    <div class="product-card">
-      <div class="product-thumb">
-        ${g.badge ? `<span class="badge-promo">${g.badge}</span>` : ''}
-        <img src="${g.image}" alt="${g.name}" loading="lazy">
-      </div>
-      <div class="product-details">
-        <span class="prod-category">${g.category}</span>
-        <h4 class="prod-title">${g.name}</h4>
-        <p class="prod-desc">${g.description}</p>
-        <div class="prod-action">
-          <span class="prod-price">$${g.price.toLocaleString('es-AR')}</span>
-          <button class="btn-add" onclick="addToCart(${g.id})">+ AGREGAR</button>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function renderFeatured() {
-  document.getElementById('featured-grid').innerHTML = gorrasDB.slice(0, 4).map(renderGorraCard).join('');
-}
-
-function renderCatalog(items) {
-  const container = document.getElementById('catalog-grid');
-  if (items.length === 0) {
-    container.innerHTML = '<p style="color:var(--text-muted); grid-column:1/-1; text-align:center; padding:3rem;">No se encontraron gorras con esa búsqueda.</p>';
-    return;
-  }
-  container.innerHTML = items.map(renderGorraCard).join('');
-}
-
-function buildCategoryPills() {
-  const categories = ['all', ...new Set(gorrasDB.map(g => g.category))];
+// Renderizar Categorías
+function renderCategories() {
   const pillsContainer = document.getElementById('category-pills');
+  if (!pillsContainer) return;
+
+  const categories = ['TODAS', ...new Set(PRODUCTS.map(p => p.category))];
   pillsContainer.innerHTML = categories.map(cat => `
-    <button class="filter-pill ${cat === currentCategory ? 'active' : ''}" onclick="filterCategory('${cat}', this)">
-      ${cat === 'all' ? 'TODAS LAS GORRAS' : cat}
+    <button class="filter-pill ${cat === activeCategory ? 'active' : ''}" onclick="filterCategory('${cat}')">
+      ${cat}
     </button>
   `).join('');
 }
 
-function filterCategory(category, btnElement) {
-  currentCategory = category;
-  document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
-  if (btnElement) btnElement.classList.add('active');
-
-  const filtered = category === 'all' ? gorrasDB : gorrasDB.filter(g => g.category === category);
-  renderCatalog(filtered);
+function filterCategory(cat) {
+  activeCategory = cat;
+  renderCategories();
+  renderProducts();
 }
 
-function filterAndGo(category) {
+function filterAndGo(cat) {
   switchTab('productos');
-  const targetPill = Array.from(document.querySelectorAll('.filter-pill')).find(p => p.textContent.trim().toLowerCase() === category.toLowerCase());
-  filterCategory(category, targetPill);
+  filterCategory(cat);
 }
 
-// 4. Buscador en vivo
+// Renderizar Grillas
+function renderProducts(searchQuery = '') {
+  const catalogGrid = document.getElementById('catalog-grid');
+  const featuredGrid = document.getElementById('featured-grid');
+
+  let filtered = PRODUCTS.filter(p => {
+    const matchesCat = (activeCategory === 'TODAS' || p.category === activeCategory);
+    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          p.desc.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCat && matchesSearch;
+  });
+
+  const generateCardHTML = (p) => `
+    <div class="product-card" onclick="openProductModal(${p.id})">
+      <div class="product-thumb">
+        ${p.badge ? `<span class="badge-promo">${p.badge}</span>` : ''}
+        <img src="${p.images[0]}" alt="${p.name}" loading="lazy">
+      </div>
+      <div class="product-details">
+        <span class="prod-category">${p.category}</span>
+        <h4 class="prod-title">${p.name}</h4>
+        <p class="prod-desc">${p.desc}</p>
+        <div class="prod-action" onclick="event.stopPropagation()">
+          <span class="prod-price">${CONFIG.currencySymbol}${p.price.toLocaleString('es-AR')}</span>
+          <button class="btn-add" onclick="addToCart(${p.id})">AGREGAR</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  if (catalogGrid) {
+    catalogGrid.innerHTML = filtered.map(generateCardHTML).join('');
+  }
+
+  if (featuredGrid) {
+    featuredGrid.innerHTML = PRODUCTS.slice(0, 4).map(generateCardHTML).join('');
+  }
+}
+
+// Buscador en Vivo
 function handleSearch() {
-  const query = document.getElementById('searchInput').value.toLowerCase().trim();
-  switchTab('productos');
-  const results = gorrasDB.filter(g => 
-    g.name.toLowerCase().includes(query) || 
-    g.category.toLowerCase().includes(query) || 
-    g.description.toLowerCase().includes(query)
-  );
-  renderCatalog(results);
+  const query = document.getElementById('searchInput').value;
+  if (query.trim() !== '') {
+    switchTab('productos');
+  }
+  renderProducts(query);
 }
 
-// 5. Carrito de Compras
-function addToCart(id) {
-  const item = gorrasDB.find(g => g.id === id);
-  const exists = cart.find(g => g.id === id);
-  if (exists) {
-    exists.qty += 1;
+// Modal Detalle de Producto y Galería Deslizable
+function openProductModal(prodId) {
+  const product = PRODUCTS.find(p => p.id === prodId);
+  if (!product) return;
+
+  currentModalProduct = product;
+  currentModalImgIndex = 0;
+
+  document.getElementById('modalCategory').innerText = product.category;
+  document.getElementById('modalTitle').innerText = product.name;
+  document.getElementById('modalPrice').innerText = `${CONFIG.currencySymbol}${product.price.toLocaleString('es-AR')}`;
+  document.getElementById('modalDesc').innerText = product.desc;
+
+  const addBtn = document.getElementById('modalAddBtn');
+  addBtn.onclick = () => {
+    addToCart(product.id);
+    closeProductModal();
+    toggleCart(true);
+  };
+
+  updateModalImage();
+  renderModalThumbs();
+
+  document.getElementById('productModal').classList.add('open');
+}
+
+function updateModalImage() {
+  const mainImg = document.getElementById('modalMainImg');
+  if (currentModalProduct && currentModalProduct.images.length > 0) {
+    mainImg.src = currentModalProduct.images[currentModalImgIndex];
+  }
+  
+  const thumbs = document.querySelectorAll('.slider-thumb-item');
+  thumbs.forEach((th, idx) => {
+    th.classList.toggle('active', idx === currentModalImgIndex);
+  });
+}
+
+function renderModalThumbs() {
+  const thumbsContainer = document.getElementById('modalThumbs');
+  if (!currentModalProduct || currentModalProduct.images.length <= 1) {
+    thumbsContainer.innerHTML = '';
+    return;
+  }
+
+  thumbsContainer.innerHTML = currentModalProduct.images.map((img, idx) => `
+    <img src="${img}" class="slider-thumb-item ${idx === currentModalImgIndex ? 'active' : ''}" onclick="setModalImg(${idx})">
+  `).join('');
+}
+
+function setModalImg(index) {
+  currentModalImgIndex = index;
+  updateModalImage();
+}
+
+function nextModalImg() {
+  if (!currentModalProduct) return;
+  currentModalImgIndex = (currentModalImgIndex + 1) % currentModalProduct.images.length;
+  updateModalImage();
+}
+
+function prevModalImg() {
+  if (!currentModalProduct) return;
+  currentModalImgIndex = (currentModalImgIndex - 1 + currentModalProduct.images.length) % currentModalProduct.images.length;
+  updateModalImage();
+}
+
+function closeProductModal(e) {
+  if (e && e.target !== e.currentTarget && !e.target.classList.contains('close-modal')) return;
+  document.getElementById('productModal').classList.remove('open');
+}
+
+// Navegación de Pestañas
+function switchTab(tabName) {
+  ['inicio', 'productos', 'contacto'].forEach(tab => {
+    const view = document.getElementById(`view-${tab}`);
+    const link = document.getElementById(`tab-${tab}`);
+    if (view) view.style.display = (tab === tabName) ? 'block' : 'none';
+    if (link) link.classList.toggle('active', tab === tabName);
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Lógica del Carrito y WhatsApp Checkout
+function addToCart(prodId) {
+  const item = PRODUCTS.find(p => p.id === prodId);
+  const existing = cart.find(c => c.id === prodId);
+
+  if (existing) {
+    existing.qty += 1;
   } else {
     cart.push({ ...item, qty: 1 });
   }
+
   saveCart();
-  toggleCart(true);
+  updateCartUI();
 }
 
-function updateQty(id, delta) {
-  const item = cart.find(g => g.id === id);
+function changeQty(prodId, delta) {
+  const item = cart.find(c => c.id === prodId);
   if (!item) return;
+
   item.qty += delta;
   if (item.qty <= 0) {
-    cart = cart.filter(p => p.id !== id);
+    cart = cart.filter(c => c.id !== prodId);
   }
+
   saveCart();
+  updateCartUI();
 }
 
 function saveCart() {
   localStorage.setItem('litoral_cart', JSON.stringify(cart));
-  updateCartUI();
 }
 
 function updateCartUI() {
-  const countElement = document.getElementById('cart-count');
-  const itemsContainer = document.getElementById('drawer-items');
-  const totalElement = document.getElementById('drawer-total-price');
+  const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+  const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
-  const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-  countElement.textContent = totalQty;
+  const cartCountEl = document.getElementById('cart-count');
+  if (cartCountEl) cartCountEl.innerText = totalCount;
 
-  if (cart.length === 0) {
-    itemsContainer.innerHTML = '<p style="color:var(--text-muted); text-align:center; margin-top:3rem; font-size:0.9rem;">TU CARRITO ESTÁ VACÍO</p>';
-    totalElement.textContent = '$0';
-    return;
+  const drawerTotalEl = document.getElementById('drawer-total-price');
+  if (drawerTotalEl) drawerTotalEl.innerText = `${CONFIG.currencySymbol}${totalPrice.toLocaleString('es-AR')}`;
+
+  const drawerItems = document.getElementById('drawer-items');
+  if (drawerItems) {
+    if (cart.length === 0) {
+      drawerItems.innerHTML = '<p style="text-align: center; color: #777; margin-top: 2rem;">El carrito está vacío.</p>';
+    } else {
+      drawerItems.innerHTML = cart.map(item => `
+        <div class="drawer-item">
+          <div class="drawer-item-info">
+            <strong>${item.name}</strong>
+            <span>${item.qty} x ${CONFIG.currencySymbol}${item.price.toLocaleString('es-AR')}</span>
+          </div>
+          <div class="drawer-qty-btns">
+            <button onclick="changeQty(${item.id}, -1)">-</button>
+            <span>${item.qty}</span>
+            <button onclick="changeQty(${item.id}, 1)">+</button>
+          </div>
+        </div>
+      `).join('');
+    }
   }
-
-  let total = 0;
-  itemsContainer.innerHTML = cart.map(item => {
-    const sub = item.price * item.qty;
-    total += sub;
-    return `
-      <div class="drawer-item">
-        <div class="drawer-item-info">
-          <strong>${item.name}</strong>
-          <span>$${item.price.toLocaleString('es-AR')} x ${item.qty}</span>
-        </div>
-        <div class="drawer-qty-btns">
-          <button onclick="updateQty(${item.id}, -1)">-</button>
-          <span style="font-size:0.85rem; font-weight:bold;">${item.qty}</span>
-          <button onclick="updateQty(${item.id}, 1)">+</button>
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  totalElement.textContent = `$${total.toLocaleString('es-AR')}`;
 }
 
-function toggleCart(open) {
+function toggleCart(show) {
   const drawer = document.getElementById('cart-drawer');
-  if (open) {
-    drawer.classList.add('open');
-  } else {
-    drawer.classList.remove('open');
-  }
+  if (drawer) drawer.classList.toggle('open', show);
 }
 
 function handleDrawerBackdrop(e) {
-  if (e.target.id === 'cart-drawer') {
-    toggleCart(false);
-  }
+  if (e.target.id === 'cart-drawer') toggleCart(false);
 }
 
-// 6. Finalizar pedido por WhatsApp
 function checkoutWhatsApp() {
-  if (cart.length === 0) return alert('El carrito está vacío.');
+  if (cart.length === 0) {
+    alert('Tu carrito está vacío.');
+    return;
+  }
 
-  let message = "¡Hola Litoral Club! Quiero encargar el siguiente pedido:\n\n";
+  let text = '⚡ *NUEVO PEDIDO - LITORAL CLUB* ⚡\n\n';
   let total = 0;
 
-  cart.forEach((item, index) => {
+  cart.forEach(item => {
     const sub = item.price * item.qty;
     total += sub;
-    message += `${index + 1}. *${item.name}* (x${item.qty}) - $${sub.toLocaleString('es-AR')}\n`;
+    text += `• *${item.name}* x${item.qty} — $${sub.toLocaleString('es-AR')}\n`;
   });
 
-  message += `\n*TOTAL DEL PEDIDO:* $${total.toLocaleString('es-AR')}\n`;
-  message += "\n¿Cómo coordinamos el pago y los datos para el envío?";
+  text += `\n*TOTAL:* $${total.toLocaleString('es-AR')}\n`;
+  text += '---------------------------------\n';
+  text += 'Hola! Quiero coordinar el pago y el envío para este pedido.';
 
-  window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
+  window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
 }
-
-// Iniciar al cargar la web
-window.onload = loadProducts;
-
-function toggleSearch() {
-  const wrapper = document.getElementById('searchWrapper');
-  const input = document.getElementById('searchInput');
-  
-  wrapper.classList.toggle('active');
-
-  if (wrapper.classList.contains('active')) {
-    input.focus();
-  } else {
-    input.value = '';
-    handleSearch(); // Restablece los productos si se cierra el buscador
-  }
-}
-
-// Cierra el buscador si hacés clic fuera de él
-document.addEventListener('click', function(event) {
-  const wrapper = document.getElementById('searchWrapper');
-  if (wrapper && !wrapper.contains(event.target) && wrapper.classList.contains('active')) {
-    const input = document.getElementById('searchInput');
-    if (input && input.value.trim() === '') {
-      wrapper.classList.remove('active');
-    }
-  }
-});
