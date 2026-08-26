@@ -1,10 +1,10 @@
-// CONFIGURACIÓN DE TU TIENDA LITORAL CLUB
+// CONFIGURACIÓN
 const CONFIG = {
-  whatsappNumber: '5493487625552', // Tu número con código de país
+  whatsappNumber: '5493487625552',
   currencySymbol: '$',
 };
 
-// CATÁLOGO DE PRODUCTOS (Podés poner varias imágenes en "images" para que se puedan deslizar)
+// CATÁLOGO CON GALERÍA DE FOTOS
 const PRODUCTS = [
   {
     id: 1,
@@ -62,25 +62,31 @@ let activeCategory = 'TODAS';
 let currentModalProduct = null;
 let currentModalImgIndex = 0;
 
-document.addEventListener('DOMContentLoaded', () => {
+// Renderizado inicial
+function initStore() {
   renderCategories();
   renderProducts();
   updateCartUI();
 
   const waLink = document.getElementById('wa-contact-link');
   if (waLink) {
-    waLink.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent('¡Hola Litoral Club! Quería hacer una consulta sobre las gorras.')}`;
+    waLink.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent('¡Hola Litoral Club! Quería consultar por las gorras.')}`;
   }
-});
+}
 
-// Renderizar Categorías
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initStore);
+} else {
+  initStore();
+}
+
 function renderCategories() {
   const pillsContainer = document.getElementById('category-pills');
   if (!pillsContainer) return;
 
   const categories = ['TODAS', ...new Set(PRODUCTS.map(p => p.category))];
   pillsContainer.innerHTML = categories.map(cat => `
-    <button class="filter-pill ${cat === activeCategory ? 'active' : ''}" onclick="filterCategory('${cat}')">
+    <button type="button" class="filter-pill ${cat === activeCategory ? 'active' : ''}" onclick="filterCategory('${cat}')">
       ${cat}
     </button>
   `).join('');
@@ -97,7 +103,6 @@ function filterAndGo(cat) {
   filterCategory(cat);
 }
 
-// Renderizar Grillas
 function renderProducts(searchQuery = '') {
   const catalogGrid = document.getElementById('catalog-grid');
   const featuredGrid = document.getElementById('featured-grid');
@@ -121,7 +126,7 @@ function renderProducts(searchQuery = '') {
         <p class="prod-desc">${p.desc}</p>
         <div class="prod-action" onclick="event.stopPropagation()">
           <span class="prod-price">${CONFIG.currencySymbol}${p.price.toLocaleString('es-AR')}</span>
-          <button class="btn-add" onclick="addToCart(${p.id})">AGREGAR</button>
+          <button type="button" class="btn-add" onclick="addToCart(${p.id})">AGREGAR</button>
         </div>
       </div>
     </div>
@@ -136,7 +141,6 @@ function renderProducts(searchQuery = '') {
   }
 }
 
-// Buscador en Vivo
 function handleSearch() {
   const query = document.getElementById('searchInput').value;
   if (query.trim() !== '') {
@@ -145,8 +149,8 @@ function handleSearch() {
   renderProducts(query);
 }
 
-// Modal Detalle de Producto y Galería Deslizable
-function openProductModal(prodId) {
+// Modal y Galería Deslizable
+window.openProductModal = function(prodId) {
   const product = PRODUCTS.find(p => p.id === prodId);
   if (!product) return;
 
@@ -169,7 +173,7 @@ function openProductModal(prodId) {
   renderModalThumbs();
 
   document.getElementById('productModal').classList.add('open');
-}
+};
 
 function updateModalImage() {
   const mainImg = document.getElementById('modalMainImg');
@@ -195,30 +199,30 @@ function renderModalThumbs() {
   `).join('');
 }
 
-function setModalImg(index) {
+window.setModalImg = function(index) {
   currentModalImgIndex = index;
   updateModalImage();
-}
+};
 
-function nextModalImg() {
+window.nextModalImg = function() {
   if (!currentModalProduct) return;
   currentModalImgIndex = (currentModalImgIndex + 1) % currentModalProduct.images.length;
   updateModalImage();
-}
+};
 
-function prevModalImg() {
+window.prevModalImg = function() {
   if (!currentModalProduct) return;
   currentModalImgIndex = (currentModalImgIndex - 1 + currentModalProduct.images.length) % currentModalProduct.images.length;
   updateModalImage();
-}
+};
 
-function closeProductModal(e) {
+window.closeProductModal = function(e) {
   if (e && e.target !== e.currentTarget && !e.target.classList.contains('close-modal')) return;
   document.getElementById('productModal').classList.remove('open');
-}
+};
 
-// Navegación de Pestañas
-function switchTab(tabName) {
+// Pestañas
+window.switchTab = function(tabName) {
   ['inicio', 'productos', 'contacto'].forEach(tab => {
     const view = document.getElementById(`view-${tab}`);
     const link = document.getElementById(`tab-${tab}`);
@@ -226,10 +230,10 @@ function switchTab(tabName) {
     if (link) link.classList.toggle('active', tab === tabName);
   });
   window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+};
 
-// Lógica del Carrito y WhatsApp Checkout
-function addToCart(prodId) {
+// Carrito
+window.addToCart = function(prodId) {
   const item = PRODUCTS.find(p => p.id === prodId);
   const existing = cart.find(c => c.id === prodId);
 
@@ -241,9 +245,9 @@ function addToCart(prodId) {
 
   saveCart();
   updateCartUI();
-}
+};
 
-function changeQty(prodId, delta) {
+window.changeQty = function(prodId, delta) {
   const item = cart.find(c => c.id === prodId);
   if (!item) return;
 
@@ -254,7 +258,7 @@ function changeQty(prodId, delta) {
 
   saveCart();
   updateCartUI();
-}
+};
 
 function saveCart() {
   localStorage.setItem('litoral_cart', JSON.stringify(cart));
@@ -282,9 +286,9 @@ function updateCartUI() {
             <span>${item.qty} x ${CONFIG.currencySymbol}${item.price.toLocaleString('es-AR')}</span>
           </div>
           <div class="drawer-qty-btns">
-            <button onclick="changeQty(${item.id}, -1)">-</button>
+            <button type="button" onclick="changeQty(${item.id}, -1)">-</button>
             <span>${item.qty}</span>
-            <button onclick="changeQty(${item.id}, 1)">+</button>
+            <button type="button" onclick="changeQty(${item.id}, 1)">+</button>
           </div>
         </div>
       `).join('');
@@ -292,16 +296,16 @@ function updateCartUI() {
   }
 }
 
-function toggleCart(show) {
+window.toggleCart = function(show) {
   const drawer = document.getElementById('cart-drawer');
   if (drawer) drawer.classList.toggle('open', show);
-}
+};
 
-function handleDrawerBackdrop(e) {
+window.handleDrawerBackdrop = function(e) {
   if (e.target.id === 'cart-drawer') toggleCart(false);
-}
+};
 
-function checkoutWhatsApp() {
+window.checkoutWhatsApp = function() {
   if (cart.length === 0) {
     alert('Tu carrito está vacío.');
     return;
@@ -321,4 +325,4 @@ function checkoutWhatsApp() {
   text += 'Hola! Quiero coordinar el pago y el envío para este pedido.';
 
   window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
-}
+};
