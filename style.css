@@ -24,7 +24,7 @@ body {
   padding-bottom: 80px;
 }
 
-/* Barra Superior con marquesina infinita */
+/* 1. Barra Superior con marquesina fluida */
 .top-bar {
   background: #000;
   color: #fff;
@@ -35,31 +35,15 @@ body {
   text-transform: uppercase;
   border-bottom: 1px solid var(--border-dark);
   overflow: hidden;
-  white-space: nowrap;
-  display: flex;
+  line-height: 1;
 }
 
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marqueeScroll 18s linear infinite;
+.top-bar marquee {
+  display: block;
+  margin: 0;
 }
 
-.marquee-track span {
-  padding-right: 1.5rem;
-  display: inline-block;
-}
-
-@keyframes marqueeScroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-/* Header / Navbar alineado: Logo Izquierda | Pestañas Centro | Herramientas Derecha */
+/* 2. Barra de Navegación */
 .header-nav {
   position: sticky;
   top: 0;
@@ -74,19 +58,16 @@ body {
   gap: 1rem;
 }
 
-/* 1. Logo a la Izquierda */
 .logo-left {
   text-align: left;
   cursor: pointer;
   user-select: none;
-  display: flex;
-  flex-direction: column;
   flex-shrink: 0;
 }
 
 .brand-title {
   font-family: var(--font-stack);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   line-height: 1;
@@ -96,13 +77,13 @@ body {
 .brand-subtitle {
   font-size: 0.52rem;
   font-weight: 900;
-  letter-spacing: 2px;
+  letter-spacing: 2.5px;
   color: var(--text-muted);
   text-transform: uppercase;
   margin-top: 2px;
 }
 
-/* 2. Pestañas en el Centro (una al lado de la otra) */
+/* Pestañas en el Centro */
 .nav-center {
   display: flex;
   justify-content: center;
@@ -148,7 +129,7 @@ body {
   background: #fff;
 }
 
-/* 3. Buscador y Carrito a la Derecha */
+/* Herramientas de la Derecha (Buscador & Carrito) */
 .nav-right {
   display: flex;
   justify-content: flex-end;
@@ -157,53 +138,118 @@ body {
   flex-shrink: 0;
 }
 
-/* Adaptación para pantallas de celular */
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  background: #181818;
+  border: 1px solid var(--border-dark);
+  border-radius: 4px;
+  padding: 2px 6px;
+  transition: all 0.3s ease;
+}
+
+.search-wrapper.active {
+  background: #222;
+  border-color: #666;
+}
+
+.search-toggle-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-wrapper.active .search-toggle-btn {
+  color: #fff;
+}
+
+.search-input-collapsible {
+  width: 0;
+  opacity: 0;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 0.78rem;
+  outline: none;
+  padding: 0;
+  transition: width 0.3s ease, opacity 0.2s ease, padding 0.3s ease;
+}
+
+.search-wrapper.active .search-input-collapsible {
+  width: 120px;
+  opacity: 1;
+  padding: 3px 6px;
+}
+
+.cart-btn {
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 0.45rem 0.8rem;
+  font-weight: 900;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Celulares */
 @media (max-width: 768px) {
   .header-nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 0.6rem 3%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: 
+      "logo tools"
+      "menu menu";
     row-gap: 0.6rem;
+    padding: 0.6rem 4%;
   }
 
   .logo-left {
-    order: 1;
+    grid-area: logo;
   }
 
   .brand-title {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
   }
 
   .nav-right {
-    order: 2;
+    grid-area: tools;
   }
 
-  /* Pestañas centradas en una sola fila debajo del logo y carrito */
   .nav-center {
-    order: 3;
-    width: 100%;
+    grid-area: menu;
     justify-content: center;
     border-top: 1px solid var(--border-dark);
-    padding-top: 0.4rem;
+    padding-top: 0.45rem;
   }
 
   .nav-center ul {
     gap: 1.2rem;
-    justify-content: center;
-    width: 100%;
   }
 
   .nav-link {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
   }
 
   .search-wrapper.active .search-input-collapsible {
-    width: 85px;
+    width: 80px;
   }
 }
 
-/* ==================== HERO BANNER PRINCIPAL ==================== */
+/* ==================== HERO BANNER ==================== */
 .hero-banner {
   position: relative;
   height: 70vh;
