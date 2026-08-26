@@ -21,14 +21,15 @@ const PRODUCTS = [
   },
   {
     id: 2,
-    name: 'SNAPBACK LITORAL CORE WHITE',
+    name: 'GORRA VINTAGE ORLANDO',
     category: 'Snapback',
-    price: 21000,
+    price: 14600,
     badge: 'NUEVO DROP',
-    desc: 'Snapback estructura rígida de 6 paneles, visera plana con sticker de autenticidad y calce streetwear.',
+    desc: 'Gorra vintage Orlando tipo baseball. Regulable.',
     images: [
-      'https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=800&q=80',
-      'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80'
+      'https://i.postimg.cc/j54kv43V/orlando-1.webp',
+      'https://i.postimg.cc/G2C5k5K3/orlando-2.webp',
+      'https://i.postimg.cc/63f1zfjk/orlando-3.webp'
     ]
   },
   {
