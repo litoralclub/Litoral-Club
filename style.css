@@ -24,7 +24,7 @@ body {
   padding-bottom: 80px;
 }
 
-/* 1. Barra Superior con marquesina fluida */
+/* 1. Barra Superior Marquesina */
 .top-bar {
   background: #000;
   color: #fff;
@@ -129,7 +129,7 @@ body {
   background: #fff;
 }
 
-/* Herramientas de la Derecha (Buscador & Carrito) */
+/* Herramientas de la Derecha (Buscador y Carrito Fijos) */
 .nav-right {
   display: flex;
   justify-content: flex-end;
@@ -138,53 +138,29 @@ body {
   flex-shrink: 0;
 }
 
-.search-wrapper {
+.search-box {
   display: flex;
   align-items: center;
   background: #181818;
   border: 1px solid var(--border-dark);
   border-radius: 4px;
-  padding: 2px 6px;
-  transition: all 0.3s ease;
+  padding: 0.35rem 0.6rem;
+  width: 130px;
+  gap: 0.4rem;
 }
 
-.search-wrapper.active {
-  background: #222;
-  border-color: #666;
-}
-
-.search-toggle-btn {
-  background: transparent;
-  border: none;
+.search-box i {
   color: var(--text-muted);
-  font-size: 0.85rem;
-  cursor: pointer;
-  padding: 4px 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 0.75rem;
 }
 
-.search-wrapper.active .search-toggle-btn {
-  color: #fff;
-}
-
-.search-input-collapsible {
-  width: 0;
-  opacity: 0;
-  border: none;
+.search-box input {
   background: transparent;
+  border: none;
   color: #fff;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   outline: none;
-  padding: 0;
-  transition: width 0.3s ease, opacity 0.2s ease, padding 0.3s ease;
-}
-
-.search-wrapper.active .search-input-collapsible {
-  width: 120px;
-  opacity: 1;
-  padding: 3px 6px;
+  width: 100%;
 }
 
 .cart-btn {
@@ -209,12 +185,12 @@ body {
 @media (max-width: 768px) {
   .header-nav {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto 1fr;
     grid-template-areas: 
       "logo tools"
       "menu menu";
     row-gap: 0.6rem;
-    padding: 0.6rem 4%;
+    padding: 0.6rem 3%;
   }
 
   .logo-left {
@@ -222,15 +198,31 @@ body {
   }
 
   .brand-title {
-    font-size: 1.35rem;
+    font-size: 1.3rem;
   }
 
   .nav-right {
     grid-area: tools;
+    gap: 0.4rem;
+  }
+
+  .search-box {
+    width: 95px;
+    padding: 0.3rem 0.4rem;
+  }
+
+  .search-box input {
+    font-size: 0.7rem;
+  }
+
+  .cart-btn {
+    padding: 0.35rem 0.55rem;
+    font-size: 0.75rem;
   }
 
   .nav-center {
     grid-area: menu;
+    width: 100%;
     justify-content: center;
     border-top: 1px solid var(--border-dark);
     padding-top: 0.45rem;
@@ -242,10 +234,6 @@ body {
 
   .nav-link {
     font-size: 0.78rem;
-  }
-
-  .search-wrapper.active .search-input-collapsible {
-    width: 80px;
   }
 }
 
@@ -460,6 +448,13 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  border-color: #444;
 }
 
 .product-thumb {
@@ -547,6 +542,170 @@ body {
 .btn-add:hover {
   background: #fff;
   color: #000;
+}
+
+/* ==================== MODAL DETALLE DE PRODUCTO CON SLIDER ==================== */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 2500;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-backdrop.open {
+  display: flex;
+}
+
+.modal-container {
+  background: #121212;
+  border: 1px solid var(--border-dark);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 760px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 1.8rem;
+}
+
+@media (max-width: 680px) {
+  .modal-container {
+    grid-template-columns: 1fr;
+    padding: 1.2rem;
+  }
+}
+
+.close-modal {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  color: #aaa;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.modal-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.slider-main {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background: #000;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.slider-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  padding: 0.6rem 0.8rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.slider-btn.prev { left: 8px; }
+.slider-btn.next { right: 8px; }
+.slider-btn:hover { background: #fff; color: #000; }
+
+.slider-thumbs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+}
+
+.slider-thumb-item {
+  width: 55px;
+  height: 55px;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  object-fit: cover;
+  opacity: 0.6;
+}
+
+.slider-thumb-item.active {
+  border-color: #fff;
+  opacity: 1;
+}
+
+.modal-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-category {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.modal-title {
+  font-family: var(--font-stack);
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 0.8rem;
+}
+
+.modal-price {
+  font-family: var(--font-stack);
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.modal-desc {
+  font-size: 0.85rem;
+  color: #bbb;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.btn-modal-add {
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 0.9rem;
+  font-weight: 900;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 /* ==================== CONTACTO ==================== */
