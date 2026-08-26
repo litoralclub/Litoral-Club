@@ -40,7 +40,7 @@ body {
   text-overflow: ellipsis;
 }
 
-/* Header de 3 Columnas: Izquierda (Logo) - Centro (Pestañas) - Derecha (Buscador/Carrito) */
+/* Header / Navbar alineado: Logo Izquierda | Pestañas Centro | Herramientas Derecha */
 .header-nav {
   position: sticky;
   top: 0;
@@ -49,8 +49,8 @@ body {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-dark);
   padding: 0.8rem 4%;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 1rem;
 }
@@ -62,18 +62,12 @@ body {
   user-select: none;
   display: flex;
   flex-direction: column;
-}
-
-.brand-logo-img {
-  max-height: 36px;
-  width: auto;
-  object-fit: contain;
-  margin-bottom: 2px;
+  flex-shrink: 0;
 }
 
 .brand-title {
   font-family: var(--font-stack);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   line-height: 1;
@@ -83,22 +77,28 @@ body {
 .brand-subtitle {
   font-size: 0.52rem;
   font-weight: 900;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   color: var(--text-muted);
   text-transform: uppercase;
   margin-top: 2px;
 }
 
-/* 2. Pestañas en el Centro */
+/* 2. Pestañas en el Centro (una al lado de la otra) */
 .nav-center {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-grow: 1;
 }
 
 .nav-center ul {
   display: flex;
+  flex-direction: row;
   list-style: none;
-  gap: 1.6rem;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
 }
 
 .nav-link {
@@ -112,6 +112,7 @@ body {
   padding: 0.3rem 0;
   transition: color 0.2s ease;
   position: relative;
+  white-space: nowrap;
 }
 
 .nav-link:hover, .nav-link.active {
@@ -121,7 +122,7 @@ body {
 .nav-link.active::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
   width: 100%;
   height: 2px;
@@ -134,115 +135,52 @@ body {
   justify-content: flex-end;
   align-items: center;
   gap: 0.6rem;
-}
-
-.search-wrapper {
-  display: flex;
-  align-items: center;
-  background: #181818;
-  border: 1px solid var(--border-dark);
-  border-radius: 4px;
-  padding: 2px 6px;
-  transition: all 0.3s ease;
-}
-
-.search-wrapper.active {
-  background: #222;
-  border-color: #666;
-}
-
-.search-toggle-btn {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  cursor: pointer;
-  padding: 4px 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.search-wrapper.active .search-toggle-btn {
-  color: #fff;
-}
-
-.search-input-collapsible {
-  width: 0;
-  opacity: 0;
-  border: none;
-  background: transparent;
-  color: #fff;
-  font-size: 0.78rem;
-  outline: none;
-  padding: 0;
-  transition: width 0.3s ease, opacity 0.2s ease, padding 0.3s ease;
-}
-
-.search-wrapper.active .search-input-collapsible {
-  width: 140px;
-  opacity: 1;
-  padding: 3px 6px;
-}
-
-.cart-btn {
-  background: #fff;
-  color: #000;
-  border: none;
-  padding: 0.45rem 0.8rem;
-  font-weight: 900;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  border-radius: 4px;
-  white-space: nowrap;
   flex-shrink: 0;
 }
 
-/* ==================== AJUSTES RESPONSIVOS (CELULARES) ==================== */
+/* Adaptación para pantallas de celular */
 @media (max-width: 768px) {
   .header-nav {
-    grid-template-columns: 1fr auto;
-    grid-template-areas: 
-      "logo tools"
-      "menu menu";
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0.6rem 3%;
     row-gap: 0.6rem;
-    padding: 0.6rem 4%;
   }
 
   .logo-left {
-    grid-area: logo;
+    order: 1;
   }
 
   .brand-title {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 
   .nav-right {
-    grid-area: tools;
+    order: 2;
   }
 
+  /* Pestañas centradas en una sola fila debajo del logo y carrito */
   .nav-center {
-    grid-area: menu;
-    justify-content: flex-start;
+    order: 3;
+    width: 100%;
+    justify-content: center;
     border-top: 1px solid var(--border-dark);
     padding-top: 0.4rem;
   }
 
   .nav-center ul {
     gap: 1.2rem;
+    justify-content: center;
+    width: 100%;
   }
 
   .nav-link {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
   }
 
   .search-wrapper.active .search-input-collapsible {
-    width: 90px;
+    width: 85px;
   }
 }
 
