@@ -5,19 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Litoral Club | Headwear & Streetwear</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
 
-  <!-- Barra Superior de Avisos -->
+  <!-- Barra Superior -->
   <div class="top-bar">
     ⚡ ENVIOS A TODO EL PAIS • COMPRA DIRECTA POR WHATSAPP • LITORAL CLUB
   </div>
 
- <!-- Header / Navbar estilo DC Shoes -->
+  <!-- Header / Navbar estilo DC Shoes -->
   <header class="header-nav">
-    <!-- Izquierda: Pestañas -->
+    
+    <!-- 1. Pestañas de navegación -->
     <nav class="nav-left">
       <ul>
         <li><a href="javascript:void(0)" onclick="switchTab('inicio')" class="nav-link active" id="tab-inicio">Inicio</a></li>
@@ -26,32 +26,28 @@
       </ul>
     </nav>
 
-    <!-- Centro: Logo Principal -->
+    <!-- 2. Logo Central (Litoral Club) -->
     <div class="logo-center" onclick="switchTab('inicio')">
+      <!-- Si querés poner la foto de tu logo acá, descomentá la siguiente línea: -->
+      <!-- <img src="assets/logo.png" alt="Litoral Club" class="main-logo-img"> -->
       <div class="brand-title">LITORAL CLUB</div>
       <div class="brand-subtitle">HEADWEAR & APPAREL</div>
     </div>
 
-    <!-- Derecha: Logo secundario + Buscador desplegable + Carrito -->
+    <!-- 3. Buscador Desplegable + Carrito -->
     <div class="nav-right">
       <div class="search-wrapper" id="searchWrapper">
-        <!-- Logo al lado de la lupa (oculto automáticamente si no hay foto para no romper el diseño) -->
-        <img 
-          src="assets/logo.png" 
-          alt="" 
-          class="side-logo-img" 
-          onerror="this.style.display='none'"
-        />
-
+        <!-- Espacio para icono de logo al lado de la lupa (oculto si no hay foto) -->
+        <img src="assets/logo.png" alt="" class="side-logo-img" onerror="this.style.display='none'" />
+        
         <button type="button" class="search-toggle-btn" onclick="toggleSearch(event)" title="Buscar">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
-
         <input 
           type="text" 
           id="searchInput" 
           class="search-input-collapsible" 
-          placeholder="BUSCAR..." 
+          placeholder="BUSCAR GORRA..." 
           oninput="handleSearch()"
         />
       </div>
@@ -63,19 +59,33 @@
     </div>
   </header>
 
-    <!-- Banners Secundarios de Colecciones -->
+  <!-- PESTAÑA 1: INICIO -->
+  <main id="view-inicio" class="tab-view">
+    
+    <!-- Banner Principal con el DROP -->
+    <section class="hero-banner">
+      <img src="https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=1600&q=80" alt="Banner Litoral Club" class="hero-bg-img">
+      <div class="hero-content">
+        <span class="hero-tag">DROP EXCLUSIVO 2026</span>
+        <h1 class="hero-title">LITORAL CLUB COLLECTION</h1>
+        <p class="hero-desc">Gorras Snapback, Dad Caps y Truckers diseñadas para la cultura urbana y streetwear.</p>
+        <button class="btn-dc" onclick="switchTab('productos')">EXPLORAR CATALOGO</button>
+      </div>
+    </section>
+
+    <!-- Banners Secundarios -->
     <section class="promo-grid">
       <div class="promo-card" onclick="filterAndGo('Trucker')">
         <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80" alt="Trucker Caps">
         <div class="promo-info">
-          <h3>LINEA VINTAGE BORDADA</h3>
-          <p>Parches bordados</p>
+          <h3>LINEA TRUCKER</h3>
+          <p>Malla reforzada & parches bordados</p>
         </div>
       </div>
       <div class="promo-card" onclick="filterAndGo('Snapback')">
         <img src="https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=800&q=80" alt="Snapbacks">
         <div class="promo-info">
-          <h3>LINEA PREMIUM</h3>
+          <h3>SNAPBACKS CLÁSICAS</h3>
           <p>Visera plana con ajuste personalizado</p>
         </div>
       </div>
@@ -91,14 +101,10 @@
 
   <!-- PESTAÑA 2: PRODUCTOS -->
   <main id="view-productos" class="tab-view" style="display: none;">
-    <div class="section-header" style="padding-top: 2rem;">
+    <div class="section-header" style="padding-top: 1.5rem;">
       <h2>CATÁLOGO DE GORRAS</h2>
     </div>
-
-    <!-- Filtros de categoría -->
     <div class="filter-bar" id="category-pills"></div>
-
-    <!-- Grilla completa de productos -->
     <div id="catalog-grid" class="products-grid"></div>
   </main>
 
@@ -111,14 +117,14 @@
         <a id="wa-contact-link" href="#" target="_blank" class="contact-link-btn wa">
           <i class="fa-brands fa-whatsapp"></i> ATENCIÓN POR WHATSAPP
         </a>
-        <a href="https://www.instagram.com/litoralclub.ar/" target="_blank" class="contact-link-btn ig">
+        <a href="https://instagram.com" target="_blank" class="contact-link-btn ig">
           <i class="fa-brands fa-instagram"></i> SEGUINOS EN INSTAGRAM
         </a>
       </div>
     </div>
   </main>
 
-  <!-- Drawer / Modal del Carrito Lateral -->
+  <!-- DRAWER DEL CARRITO -->
   <div class="cart-drawer" id="cart-drawer" onclick="handleDrawerBackdrop(event)">
     <div class="drawer-content">
       <div class="drawer-header">
