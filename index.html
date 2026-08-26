@@ -9,26 +9,23 @@
 </head>
 <body>
 
- <!-- Barra Superior con texto infinito en movimiento -->
+  <!-- Barra Superior que corre continuamente de lado a lado -->
   <div class="top-bar">
-    <div class="marquee-track">
-      <span>⚡ ENVIOS A TODO EL PAIS • COMPRA DIRECTA POR WHATSAPP • LITORAL CLUB HEADWEAR • ENVIOS A TODO EL PAIS • COMPRA DIRECTA POR WHATSAPP • LITORAL CLUB HEADWEAR • </span>
-      <span>⚡ ENVIOS A TODO EL PAIS • COMPRA DIRECTA POR WHATSAPP • LITORAL CLUB HEADWEAR • ENVIOS A TODO EL PAIS • COMPRA DIRECTA POR WHATSAPP • LITORAL CLUB HEADWEAR • </span>
-    </div>
+    <marquee behavior="scroll" direction="left" scrollamount="6">
+      ⚡ ENVIOS A TODO EL PAIS • COMPRA DIRECTA POR WHATSAPP • LITORAL CLUB HEADWEAR • ENVIOS A TODO EL PAIS • COMPRA DIRECTA POR WHATSAPP • LITORAL CLUB HEADWEAR •
+    </marquee>
   </div>
-  
+
   <!-- Header / Navbar estilo DC Shoes -->
   <header class="header-nav">
     
-    <!-- 1. Izquierda: Logo e Identidad de Litoral Club -->
+    <!-- 1. Logo a la Izquierda -->
     <div class="logo-left" onclick="switchTab('inicio')">
-      <!-- Espacio para la foto de tu logo (descomentá y colocá tu imagen en assets/logo.png): -->
-      <!-- <img src="assets/logo.png" alt="Litoral Club" class="brand-logo-img" onerror="this.style.display='none'"> -->
       <div class="brand-title">LITORAL CLUB</div>
       <div class="brand-subtitle">HEADWEAR & APPAREL</div>
     </div>
 
-    <!-- 2. Centro: Pestañas de navegación -->
+    <!-- 2. Pestañas en el Centro (una al lado de la otra) -->
     <nav class="nav-center">
       <ul>
         <li><a href="javascript:void(0)" onclick="switchTab('inicio')" class="nav-link active" id="tab-inicio">Inicio</a></li>
@@ -37,7 +34,7 @@
       </ul>
     </nav>
 
-    <!-- 3. Derecha: Buscador desplegable y Carrito -->
+    <!-- 3. Herramientas a la Derecha -->
     <div class="nav-right">
       <div class="search-wrapper" id="searchWrapper">
         <button type="button" class="search-toggle-btn" onclick="toggleSearch(event)" title="Buscar">
