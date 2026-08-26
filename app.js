@@ -1,6 +1,6 @@
-// CONFIGURACIÓN
+// CONFIGURACIÓN DE TU TIENDA LITORAL CLUB
 const CONFIG = {
-  whatsappNumber: '5493487625552',
+  whatsappNumber: '5493447542312',
   currencySymbol: '$',
 };
 
