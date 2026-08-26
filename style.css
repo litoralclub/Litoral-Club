@@ -40,156 +40,96 @@ body {
   text-overflow: ellipsis;
 }
 
-/* Header / Barra de Navegación DC Shoes */
-.header-nav {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(10, 10, 10, 0.98);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border-dark);
-  padding: 0.8rem 4%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-}
-
-.logo-center {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  order: 1;
-}
-
-.brand-title {
-  font-family: var(--font-stack);
-  font-size: 1.8rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  line-height: 1;
-  color: #fff;
-}
-
-.brand-subtitle {
-  font-size: 0.55rem;
-  font-weight: 900;
-  letter-spacing: 3px;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  margin-top: 2px;
-}
-
-.nav-left {
-  order: 2;
-}
-
-.nav-left ul {
-  display: flex;
-  list-style: none;
-  gap: 1.2rem;
-}
-
-.nav-link {
-  color: var(--text-muted);
-  text-decoration: none;
-  text-transform: uppercase;
-  font-weight: 800;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
-  cursor: pointer;
-  position: relative;
-  padding: 0.3rem 0;
-  transition: color 0.2s ease;
-}
-
-.nav-link:hover, .nav-link.active {
-  color: var(--text-white);
-}
-
-.nav-link.active::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: #fff;
-}
-
+/* Derecha: Wrapper con Logo y Buscador desplegable */
 .nav-right {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.8rem;
   order: 3;
 }
 
-.search-box {
+.search-wrapper {
   display: flex;
   align-items: center;
-  background: #191919;
+  background: #141414;
   border: 1px solid var(--border-dark);
-  padding: 0.4rem 0.6rem;
   border-radius: 4px;
-  width: 130px;
-  transition: all 0.3s ease;
+  padding: 2px 6px;
+  position: relative;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 }
 
-.search-box:focus-within {
-  border-color: #777;
+.search-wrapper.active {
+  border-color: #666;
+  background: #1a1a1a;
 }
 
-.search-box i {
-  color: var(--text-muted);
-  font-size: 0.8rem;
-  margin-right: 0.4rem;
+/* Espacio para la foto de tu logo */
+.nav-side-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s ease, margin 0.35s ease;
+  margin-right: 4px;
 }
 
-.search-box input {
+.side-logo-img {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Botón de la lupa */
+.search-toggle-btn {
   background: transparent;
   border: none;
-  color: #fff;
-  font-size: 0.78rem;
-  width: 100%;
-  outline: none;
-}
-
-.cart-btn {
-  background: #fff;
-  color: #000;
-  border: none;
-  padding: 0.45rem 0.75rem;
-  font-weight: 900;
-  font-size: 0.8rem;
-  text-transform: uppercase;
+  color: var(--text-muted);
+  font-size: 0.9rem;
   cursor: pointer;
+  padding: 6px;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  border-radius: 4px;
-  white-space: nowrap;
+  justify-content: center;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
-/* Ajustes exclusivos para Celulares */
-@media (max-width: 768px) {
-  .header-nav {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: 
-      "logo logo"
-      "menu tools";
-    padding: 0.6rem 4%;
-    gap: 0.6rem;
-  }
+.search-toggle-btn:hover,
+.search-wrapper.active .search-toggle-btn {
+  color: var(--text-white);
+}
 
-  .logo-center {
-    grid-area: logo;
-    margin-bottom: 0.2rem;
+/* Input oculto por defecto que se despliega al tocar */
+.search-input-collapsible {
+  width: 0;
+  opacity: 0;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 0.8rem;
+  outline: none;
+  padding: 0;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, padding 0.35s ease;
+}
+
+/* Estado cuando se abre el buscador */
+.search-wrapper.active .search-input-collapsible {
+  width: 170px;
+  opacity: 1;
+  padding: 4px 6px;
+}
+
+/* Ajustes para celular */
+@media (max-width: 768px) {
+  .search-wrapper.active .search-input-collapsible {
+    width: 110px;
   }
+  .side-logo-img {
+    height: 22px;
+  }
+}
 
   .brand-title {
     font-size: 1.5rem;
