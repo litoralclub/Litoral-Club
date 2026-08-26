@@ -11,14 +11,22 @@
 
   <!-- Barra Superior -->
   <div class="top-bar">
-    ⚡ ENVIOS A TODO EL PAIS • COMPRA DIRECTA POR WHATSAPP • LITORAL CLUB
+    ⚡ ENVIOS A TODO EL PAIS • COMPRA DIRECTA POR WHATSAPP • LITORAL CLUB HEADWEAR
   </div>
 
   <!-- Header / Navbar estilo DC Shoes -->
   <header class="header-nav">
     
-    <!-- 1. Pestañas de navegación -->
-    <nav class="nav-left">
+    <!-- 1. Izquierda: Logo e Identidad de Litoral Club -->
+    <div class="logo-left" onclick="switchTab('inicio')">
+      <!-- Espacio para la foto de tu logo (descomentá y colocá tu imagen en assets/logo.png): -->
+      <!-- <img src="assets/logo.png" alt="Litoral Club" class="brand-logo-img" onerror="this.style.display='none'"> -->
+      <div class="brand-title">LITORAL CLUB</div>
+      <div class="brand-subtitle">HEADWEAR & APPAREL</div>
+    </div>
+
+    <!-- 2. Centro: Pestañas de navegación -->
+    <nav class="nav-center">
       <ul>
         <li><a href="javascript:void(0)" onclick="switchTab('inicio')" class="nav-link active" id="tab-inicio">Inicio</a></li>
         <li><a href="javascript:void(0)" onclick="switchTab('productos')" class="nav-link" id="tab-productos">Gorras</a></li>
@@ -26,20 +34,9 @@
       </ul>
     </nav>
 
-    <!-- 2. Logo Central (Litoral Club) -->
-    <div class="logo-center" onclick="switchTab('inicio')">
-      <!-- Si querés poner la foto de tu logo acá, descomentá la siguiente línea: -->
-      <!-- <img src="assets/logo.png" alt="Litoral Club" class="main-logo-img"> -->
-      <div class="brand-title">LITORAL CLUB</div>
-      <div class="brand-subtitle">HEADWEAR & APPAREL</div>
-    </div>
-
-    <!-- 3. Buscador Desplegable + Carrito -->
+    <!-- 3. Derecha: Buscador desplegable y Carrito -->
     <div class="nav-right">
       <div class="search-wrapper" id="searchWrapper">
-        <!-- Espacio para icono de logo al lado de la lupa (oculto si no hay foto) -->
-        <img src="assets/logo.png" alt="" class="side-logo-img" onerror="this.style.display='none'" />
-        
         <button type="button" class="search-toggle-btn" onclick="toggleSearch(event)" title="Buscar">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
@@ -57,14 +54,15 @@
         <span id="cart-count">0</span>
       </button>
     </div>
+
   </header>
 
-  <!-- PESTAÑA 1: INICIO -->
+  <!-- ==================== PESTAÑA 1: INICIO ==================== -->
   <main id="view-inicio" class="tab-view">
     
-    <!-- Banner Principal con el DROP -->
+    <!-- Banner Principal con el DROP y fondo de camisetas -->
     <section class="hero-banner">
-      <img src="https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=1600&q=80" alt="Banner Litoral Club" class="hero-bg-img">
+      <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=1600&q=80" alt="Banner Litoral Club" class="hero-bg-img">
       <div class="hero-content">
         <span class="hero-tag">DROP EXCLUSIVO 2026</span>
         <h1 class="hero-title">LITORAL CLUB COLLECTION</h1>
@@ -73,7 +71,7 @@
       </div>
     </section>
 
-    <!-- Banners Secundarios -->
+    <!-- Banners Secundarios de Colecciones -->
     <section class="promo-grid">
       <div class="promo-card" onclick="filterAndGo('Trucker')">
         <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80" alt="Trucker Caps">
@@ -99,7 +97,7 @@
     <div id="featured-grid" class="products-grid"></div>
   </main>
 
-  <!-- PESTAÑA 2: PRODUCTOS -->
+  <!-- ==================== PESTAÑA 2: PRODUCTOS ==================== -->
   <main id="view-productos" class="tab-view" style="display: none;">
     <div class="section-header" style="padding-top: 1.5rem;">
       <h2>CATÁLOGO DE GORRAS</h2>
@@ -108,7 +106,7 @@
     <div id="catalog-grid" class="products-grid"></div>
   </main>
 
-  <!-- PESTAÑA 3: CONTACTO -->
+  <!-- ==================== PESTAÑA 3: CONTACTO ==================== -->
   <main id="view-contacto" class="tab-view" style="display: none;">
     <div class="contact-container">
       <h2>LITORAL CLUB CUSTOMER CARE</h2>
@@ -124,7 +122,7 @@
     </div>
   </main>
 
-  <!-- DRAWER DEL CARRITO -->
+  <!-- ==================== DRAWER LATERAL DEL CARRITO ==================== -->
   <div class="cart-drawer" id="cart-drawer" onclick="handleDrawerBackdrop(event)">
     <div class="drawer-content">
       <div class="drawer-header">
