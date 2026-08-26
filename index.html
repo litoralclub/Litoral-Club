@@ -34,32 +34,33 @@
       <div class="brand-subtitle">GORRAS URBANAS</div>
     </div>
 
-    <!-- Derecha: Buscador y Carrito -->
+    <!-- Derecha: Logo secundario, Buscador desplegable y Carrito -->
     <div class="nav-right">
-      <div class="search-box">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" id="searchInput" placeholder="BUSCAR GORRA..." oninput="handleSearch()">
+      <div class="search-wrapper" id="searchWrapper">
+        <!-- Espacio para la imagen de tu logo al lado de la lupa -->
+        <div class="nav-side-logo">
+          <!-- Reemplazá 'assets/logo.png' por la ruta de tu logo -->
+          <img src="assets/logo.png" alt="Logo Litoral Club" class="side-logo-img">
+        </div>
+
+        <button class="search-toggle-btn" onclick="toggleSearch()" title="Buscar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+        <input 
+          type="text" 
+          id="searchInput" 
+          class="search-input-collapsible" 
+          placeholder="BUSCAR GORRA..." 
+          oninput="handleSearch()"
+        />
       </div>
+
       <button class="cart-btn" onclick="toggleCart(true)">
         <i class="fa-solid fa-bag-shopping"></i>
         <span id="cart-count">0</span>
       </button>
     </div>
-  </header>
-
-  <!-- PESTAÑA 1: INICIO -->
-  <main id="view-inicio" class="tab-view">
-    <!-- Banner Principal con Promociones -->
-    <section class="hero-banner">
-      <!-- Imagen de fondo del banner principal -->
-      <img src="https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=1600&q=80" alt="Banner Litoral Club" class="hero-bg-img">
-      <div class="hero-content">
-        <span class="hero-tag">DROP EXCLUSIVO</span>
-        <h1 class="hero-title">LITORAL CLUB COLLECTION</h1>
-        <p class="hero-desc">Gorras Snapback, Dad Caps y Truckers diseñadas para la cultura urbana y streetwear.</p>
-        <button class="btn-dc" onclick="switchTab('productos')">EXPLORAR CATALOGO</button>
-      </div>
-    </section>
 
     <!-- Banners Secundarios de Colecciones -->
     <section class="promo-grid">
