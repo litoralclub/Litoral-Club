@@ -15,9 +15,9 @@
     ⚡ ENVIOS A TODO EL PAIS • COMPRA DIRECTA POR WHATSAPP • LITORAL CLUB
   </div>
 
-  <!-- Header / Navbar estilo DC Shoes -->
+ <!-- Header / Navbar estilo DC Shoes -->
   <header class="header-nav">
-    <!-- Izquierda: Navegación -->
+    <!-- Izquierda: Pestañas -->
     <nav class="nav-left">
       <ul>
         <li><a href="javascript:void(0)" onclick="switchTab('inicio')" class="nav-link active" id="tab-inicio">Inicio</a></li>
@@ -26,24 +26,24 @@
       </ul>
     </nav>
 
-    <!-- Centro: Logo Litoral Club -->
+    <!-- Centro: Logo Principal -->
     <div class="logo-center" onclick="switchTab('inicio')">
-      <!-- Si tienes imagen de logo, ponla en assets/logo.png y descomenta la linea de abajo: -->
-      <!-- <img src="assets/logo.png" alt="Litoral Club" class="brand-logo-img"> -->
       <div class="brand-title">LITORAL CLUB</div>
-      <div class="brand-subtitle">GORRAS URBANAS</div>
+      <div class="brand-subtitle">HEADWEAR & APPAREL</div>
     </div>
 
-    <!-- Derecha: Logo secundario, Buscador desplegable y Carrito -->
+    <!-- Derecha: Logo secundario + Buscador desplegable + Carrito -->
     <div class="nav-right">
       <div class="search-wrapper" id="searchWrapper">
-        <!-- Espacio para la imagen de tu logo al lado de la lupa -->
-        <div class="nav-side-logo">
-          <!-- Reemplazá 'assets/logo.png' por la ruta de tu logo -->
-          <img src="assets/logo.png" alt="Logo Litoral Club" class="side-logo-img">
-        </div>
+        <!-- Logo al lado de la lupa (oculto automáticamente si no hay foto para no romper el diseño) -->
+        <img 
+          src="assets/logo.png" 
+          alt="" 
+          class="side-logo-img" 
+          onerror="this.style.display='none'"
+        />
 
-        <button class="search-toggle-btn" onclick="toggleSearch()" title="Buscar">
+        <button type="button" class="search-toggle-btn" onclick="toggleSearch(event)" title="Buscar">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
 
@@ -51,7 +51,7 @@
           type="text" 
           id="searchInput" 
           class="search-input-collapsible" 
-          placeholder="BUSCAR GORRA..." 
+          placeholder="BUSCAR..." 
           oninput="handleSearch()"
         />
       </div>
@@ -61,6 +61,7 @@
         <span id="cart-count">0</span>
       </button>
     </div>
+  </header>
 
     <!-- Banners Secundarios de Colecciones -->
     <section class="promo-grid">
