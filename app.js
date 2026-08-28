@@ -8,24 +8,24 @@ const CONFIG = {
 const PRODUCTS = [
   {
     id: 1,
-    name: 'GORRA TRUCKER BLACK ICON',
-    category: 'Trucker',
-    price: 18500,
+    name: 'GORRA VINTAGE ROUTE 66',
+    category: 'Snapback',
+    price: 13320,
     badge: 'BEST SELLER',
-    desc: 'Trucker clásica con frente acolchado, bordado frontal de alta densidad y malla respirable premium.',
+    desc: 'Gorra vintage Route 66 tipo baseball, bordado frontal de alta densidad premium. Regulable.',
     images: [
-      'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80',
-      'https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=800&q=80',
-      'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=800&q=80'
+      'https://i.postimg.cc/dVyTM588/IMG-0343.png',
+      'https://i.postimg.cc/nhDQ83v4/IMG-0341.png',
+      'https://i.postimg.cc/L81ZdxzB/IMG-0342.png'
     ]
   },
   {
     id: 2,
     name: 'GORRA VINTAGE ORLANDO',
     category: 'Snapback',
-    price: 14600,
+    price: 13320,
     badge: 'NUEVO DROP',
-    desc: 'Gorra vintage Orlando tipo baseball. Regulable.',
+    desc: 'Gorra vintage Orlando tipo baseball, bordado frontal y lateral de alta densidad premium. Regulable.',
     images: [
       'https://i.postimg.cc/j54kv43V/orlando-1.webp',
       'https://i.postimg.cc/G2C5k5K3/orlando-2.webp',
