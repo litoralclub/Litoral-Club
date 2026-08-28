@@ -12,7 +12,7 @@ const PRODUCTS = [
     category: 'Snapback',
     price: 13320,
     badge: 'BEST SELLER',
-    desc: 'Gorra vintage Route 66 tipo baseball, bordado frontal de alta densidad premium. Regulable.',
+    desc: 'Gorra vintage Route 66 tipo baseball, bordado frontal de alta densidad premium. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
     images: [
       'https://i.postimg.cc/dVyTM588/IMG-0343.png',
       'https://i.postimg.cc/nhDQ83v4/IMG-0341.png',
@@ -25,7 +25,7 @@ const PRODUCTS = [
     category: 'Snapback',
     price: 13320,
     badge: 'NUEVO DROP',
-    desc: 'Gorra vintage Orlando tipo baseball, bordado frontal y lateral de alta densidad premium. Regulable.',
+    desc: 'Gorra vintage Orlando tipo baseball, bordado frontal y lateral de alta densidad premium. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
     images: [
       'https://i.postimg.cc/j54kv43V/orlando-1.webp',
       'https://i.postimg.cc/G2C5k5K3/orlando-2.webp',
@@ -34,26 +34,28 @@ const PRODUCTS = [
   },
   {
     id: 3,
-    name: 'DAD CAP VINTAGE WASHED',
-    category: 'Dad Cap',
-    price: 17500,
+    name: 'GORRA VINTAGE USA',
+    category: 'Snapback',
+    price: 13320,
     badge: 'LIMITED',
-    desc: 'Algodón 100% gastado estilo vintage, visera curva y hebilla metálica trasera regulable.',
+    desc: 'Gorra vintage USA tipo baseball. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
     images: [
-      'https://images.unsplash.com/photo-1521369909029-2afed882baee?w=800&q=80',
-      'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80'
+      'https://i.postimg.cc/NfhK66hG/IMG-0339.jpg',
+      'https://i.postimg.cc/MKkn77kK/IMG-0440.jpg'
     ]
   },
   {
     id: 4,
-    name: 'TRUCKER BEIGE & BROWN SPECIAL',
-    category: 'Trucker',
-    price: 19500,
-    badge: 'DROP 2026',
-    desc: 'Combinación bicolor en tonos tierra, visera semicurva y etiqueta tejida lateral.',
+    name: 'GORRA VINTAGE MIAMI FLORIDA',
+    category: 'Snapback',
+    price: 13320,
+    badge: 'LIMITED',
+    desc: 'Gorra vintage Miami Florida. Combinación bicolor. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
     images: [
-      'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=800&q=80',
-      'https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=800&q=80'
+      'https://i.postimg.cc/VLbj1swD/IMG-0441.webp',
+      'https://i.postimg.cc/BQ1xsZ3m/IMG-0442.webp',
+      'https://i.postimg.cc/Yqm1k278/IMG-0443.webp',
+      'https://i.postimg.cc/qMC80BrL/IMG-0444.webp'
     ]
   }
 ];
