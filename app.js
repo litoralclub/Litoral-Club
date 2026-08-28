@@ -57,7 +57,32 @@ const PRODUCTS = [
       'https://i.postimg.cc/Yqm1k278/IMG-0443.webp',
       'https://i.postimg.cc/qMC80BrL/IMG-0444.webp'
     ]
-  }
+  },
+  {
+    id: 5,
+    name: 'GORRA VINTAGE ORIGINAL 77',
+    category: 'Vintage',
+    price: 13320,
+    badge: 'LIMITED',
+    desc: 'Gorra vintage Original 77. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
+    images: [
+      'https://i.postimg.cc/zvT2yCh9/IMG-0344.png',
+      'https://i.postimg.cc/Y0QDv6F5/IMG-0345.png',
+      'https://i.postimg.cc/VvXZJqMP/IMG-0346.png'
+    ]
+  },
+  {
+    id: 6,
+    name: 'GORRA VINTAGE ATHLETE',
+    category: 'Vintage',
+    price: 13320,
+    badge: 'LIMITED',
+    desc: 'Gorra vintage Arhlete. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
+    images: [
+      'https://i.postimg.cc/Hn35vj1c/IMG-0449.png',
+      'https://i.postimg.cc/T1QmNhvW/IMG-0450.png'
+    ]
+  },
 ];
 
 let cart = JSON.parse(localStorage.getItem('litoral_cart')) || [];
