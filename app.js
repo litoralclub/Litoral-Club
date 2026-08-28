@@ -83,6 +83,83 @@ const PRODUCTS = [
       'https://i.postimg.cc/T1QmNhvW/IMG-0450.png'
     ]
   },
+  {
+    id: 7,
+    name: 'GORRA VINTAGE ATHLETE',
+    category: 'Vintage',
+    price: 13320,
+    badge: 'LIMITED',
+    desc: 'Gorra vintage Arhlete. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
+    images: [
+      'https://i.postimg.cc/Hn35vj1c/IMG-0449.png',
+      'https://i.postimg.cc/T1QmNhvW/IMG-0450.png'
+    ]
+  },
+  {
+    id: 8,
+    name: 'GORRA NY Yankees',
+    category: 'Urbanas',
+    price: 17960,
+    badge: 'NEW DROP',
+    desc: 'Gorra NY baseball premium. Visera curva, estructura rígida y hebilla trasera regulable.',
+    images: [
+      'https://i.postimg.cc/vH3kfvkd/IMG-0465.webp',
+      'https://i.postimg.cc/RVXyKTyv/IMG-0464.webp',
+      'https://i.postimg.cc/J4PvZQvL/IMG-0466.webp',
+      'https://i.postimg.cc/dt4pr9pq/IMG-0462.webp',
+      'https://i.postimg.cc/wT0ZLkZg/IMG-0461.webp',
+      'https://i.postimg.cc/BQMkHCks/IMG-0463.webp'
+    ]
+  },
+  {
+    id: 9,
+    name: 'GORRA NY BASEBALL',
+    category: 'Urbanas',
+    price: 17960,
+    badge: 'LIMITED',
+    desc: 'Gorra NY Baseball Premium. Visera curva, estructura rígida y hebilla trasera regulable.',
+    images: [
+      'https://i.postimg.cc/yYM9fMwG/IMG-0458.png',
+      'https://i.postimg.cc/ncy7dy65/IMG-0459.png'
+    ]
+  },
+  {
+  id: 10,
+    name: 'GORRA BOSTON BLACK',
+    category: 'Urbanas',
+    price: 17960,
+    badge: 'LIMITED',
+    desc: 'Gorra BOSTON Black Premium. Visera curva, estructura rígida y hebilla trasera regulable.',
+    images: [
+      'https://i.postimg.cc/cHz6vYWT/IMG-0454.jpg',
+      'https://i.postimg.cc/XJPXrFWL/IMG-0455.jpg'
+    ]
+  },
+  {
+  id: 11,
+    name: 'GORRA NY CLASSIC',
+    category: 'Urbanas',
+    price: 17960,
+    badge: 'LIMITED',
+    desc: 'Gorra NY Classic Premium. Visera curva, estructura rígida y hebilla trasera regulable.',
+    images: [
+      'https://i.postimg.cc/85Ys7WGy/IMG-0452.jpg',
+      'https://i.postimg.cc/76Rb574s/IMG-0453.jpg',
+      'https://i.postimg.cc/mDnhPM46/IMG-0451.jpg'
+    ]
+  },
+  {
+  id: 11,
+    name: 'GORRA ANGELS CLASSIC',
+    category: 'Urbanas',
+    price: 17960,
+    badge: 'LIMITED',
+    desc: 'Gorra Angels Classic Premium. Visera curva, estructura rígida y hebilla trasera regulable.',
+    images: [
+      'https://i.postimg.cc/fLPkVXs8/IMG-0283.jpg',
+      'https://i.postimg.cc/C12dRD0m/IMG-0457.jpg'
+    ]
+  },
 ];
 
 let cart = JSON.parse(localStorage.getItem('litoral_cart')) || [];
