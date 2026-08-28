@@ -9,7 +9,7 @@ const PRODUCTS = [
   {
     id: 1,
     name: 'GORRA VINTAGE ROUTE 66',
-    category: 'Snapback',
+    category: 'Vintage',
     price: 13320,
     badge: 'BEST SELLER',
     desc: 'Gorra vintage Route 66 tipo baseball, bordado frontal de alta densidad premium. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
@@ -22,7 +22,7 @@ const PRODUCTS = [
   {
     id: 2,
     name: 'GORRA VINTAGE ORLANDO',
-    category: 'Snapback',
+    category: 'Vintage',
     price: 13320,
     badge: 'NUEVO DROP',
     desc: 'Gorra vintage Orlando tipo baseball, bordado frontal y lateral de alta densidad premium. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
@@ -35,7 +35,7 @@ const PRODUCTS = [
   {
     id: 3,
     name: 'GORRA VINTAGE USA',
-    category: 'Snapback',
+    category: 'Vintage',
     price: 13320,
     badge: 'LIMITED',
     desc: 'Gorra vintage USA tipo baseball. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
@@ -47,7 +47,7 @@ const PRODUCTS = [
   {
     id: 4,
     name: 'GORRA VINTAGE MIAMI FLORIDA',
-    category: 'Snapback',
+    category: 'Vintage',
     price: 13320,
     badge: 'LIMITED',
     desc: 'Gorra vintage Miami Florida. Combinación bicolor. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
