@@ -72,18 +72,6 @@ const PRODUCTS = [
     ]
   },
   {
-    id: 6,
-    name: 'GORRA VINTAGE ATHLETE',
-    category: 'Vintage',
-    price: 13320,
-    badge: 'LIMITED',
-    desc: 'Gorra vintage Arhlete. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
-    images: [
-      'https://i.postimg.cc/Hn35vj1c/IMG-0449.png',
-      'https://i.postimg.cc/T1QmNhvW/IMG-0450.png'
-    ]
-  },
-  {
     id: 7,
     name: 'GORRA VINTAGE ATHLETE',
     category: 'Vintage',
