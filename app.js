@@ -179,7 +179,7 @@ const PRODUCTS = [
   id: 15,
     name: 'GORRA FERRARI BLANCA',
     category: 'Formula 1',
-    price: 17960,
+    price: 18960,
     badge: 'PREMIUM',
     desc: 'Gorra Ferrari Premium. Visera curva, estructura rígida y hebilla trasera regulable.',
     images: [
@@ -191,7 +191,7 @@ const PRODUCTS = [
   id: 16,
     name: 'GORRA AYRTON SENNA',
     category: 'Formula 1',
-    price: 17960,
+    price: 18960,
     badge: 'LIMITED',
     desc: 'Gorra Ayrton Senna Premium. Visera curva, estructura rígida, malla reistente y hebilla trasera regulable.',
     images: [
