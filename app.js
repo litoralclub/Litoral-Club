@@ -137,7 +137,7 @@ const PRODUCTS = [
     ]
   },
   {
-  id: 11,
+  id: 12,
     name: 'GORRA ANGELS CLASSIC',
     category: 'Urbanas',
     price: 17960,
@@ -146,6 +146,59 @@ const PRODUCTS = [
     images: [
       'https://i.postimg.cc/fLPkVXs8/IMG-0283.jpg',
       'https://i.postimg.cc/C12dRD0m/IMG-0457.jpg'
+    ]
+  },
+  {
+  id: 13,
+    name: 'GORRA FORMULA 1 ROJA',
+    category: 'Formula 1',
+    price: 17960,
+    badge: 'LIMITED',
+    desc: 'Gorra Formula 1 Premium. Visera curva, estructura rígida y hebilla trasera regulable.',
+    images: [
+      'https://i.postimg.cc/Y9Qdpx0R/IMG-0494.png',
+      'https://i.postimg.cc/tTFBXzJB/IMG-0495.png',
+      'https://i.postimg.cc/hjV2S0vM/IMG-0496.png',
+      'https://i.postimg.cc/W30527zX/IMG-0497.png',
+      'https://i.postimg.cc/76SKxNht/IMG-0498.png',
+      'https://i.postimg.cc/5y1njFQw/IMG-0499.png'
+    ]
+  },
+  {
+  id: 14,
+    name: 'GORRA MERCEDES BENZ',
+    category: 'Formula 1',
+    price: 17960,
+    badge: 'PREMIUM',
+    desc: 'Gorra Mercedes Benz azul o negra Premium. Visera curva, estructura rígida y hebilla trasera regulable.',
+    images: [
+      'https://i.postimg.cc/gJfrKvHZ/IMG-0500.png',
+      'https://i.postimg.cc/qRtznmyQ/IMG-0501.png',
+      'https://i.postimg.cc/d1zD98jr/IMG-0502.png'
+    ]
+  },
+   {
+  id: 15,
+    name: 'GORRA FERRARI BLANCA',
+    category: 'Formula 1',
+    price: 17960,
+    badge: 'PREMIUM',
+    desc: 'Gorra Ferrari Premium. Visera curva, estructura rígida y hebilla trasera regulable.',
+    images: [
+      'https://i.postimg.cc/cC0GZCxs/IMG-0503.png',
+      'https://i.postimg.cc/sxsCyxjg/IMG-0504.png'
+    ]
+  },
+  {
+  id: 16,
+    name: 'GORRA AYRTON SENNA',
+    category: 'Formula 1',
+    price: 17960,
+    badge: 'LIMITED',
+    desc: 'Gorra Ayrton Senna Premium. Visera curva, estructura rígida, malla reistente y hebilla trasera regulable.',
+    images: [
+      'https://i.postimg.cc/pTkqhLQj/IMG-0505.png',
+      'https://i.postimg.cc/j5vZwS67/IMG-0506.png'
     ]
   },
 ];
