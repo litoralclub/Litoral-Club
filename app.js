@@ -159,9 +159,7 @@ const PRODUCTS = [
       'https://i.postimg.cc/Y9Qdpx0R/IMG-0494.png',
       'https://i.postimg.cc/tTFBXzJB/IMG-0495.png',
       'https://i.postimg.cc/hjV2S0vM/IMG-0496.png',
-      'https://i.postimg.cc/W30527zX/IMG-0497.png',
-      'https://i.postimg.cc/76SKxNht/IMG-0498.png',
-      'https://i.postimg.cc/5y1njFQw/IMG-0499.png'
+      'https://i.postimg.cc/W30527zX/IMG-0497.png'
     ]
   },
   {
