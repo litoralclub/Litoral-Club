@@ -199,6 +199,17 @@ const PRODUCTS = [
       'https://i.postimg.cc/j5vZwS67/IMG-0506.png'
     ]
   },
+   {
+  id: 17,
+    name: 'GORRA ALPINESTARS',
+    category: 'Formula 1',
+    price: 17960,
+    badge: 'LIMITED',
+    desc: 'Gorra Alpinestars Premium. Visera curva, estructura rígida y hebilla trasera regulable.',
+    images: [
+      'https://i.postimg.cc/gj2G9sHJ/IMG-0507.jpg'
+    ]
+  },
 ];
 
 let cart = JSON.parse(localStorage.getItem('litoral_cart')) || [];
