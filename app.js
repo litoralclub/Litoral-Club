@@ -4,7 +4,7 @@ const CONFIG = {
   currencySymbol: '$',
 };
 
-// CATÁLOGO CON GALERÍA DE FOTOS
+// CATÁLOGO CON GALERÍA DE FOTOS REAL
 const PRODUCTS = [
   {
     id: 1,
@@ -77,7 +77,7 @@ const PRODUCTS = [
     category: 'Vintage',
     price: 13320,
     badge: 'LIMITED',
-    desc: 'Gorra vintage Arhlete. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
+    desc: 'Gorra vintage Athlete. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
     images: [
       'https://i.postimg.cc/Hn35vj1c/IMG-0449.png',
       'https://i.postimg.cc/T1QmNhvW/IMG-0450.png'
@@ -112,7 +112,7 @@ const PRODUCTS = [
     ]
   },
   {
-  id: 10,
+    id: 10,
     name: 'GORRA BOSTON BLACK',
     category: 'Urbanas',
     price: 17960,
@@ -124,7 +124,7 @@ const PRODUCTS = [
     ]
   },
   {
-  id: 11,
+    id: 11,
     name: 'GORRA NY CLASSIC',
     category: 'Urbanas',
     price: 17960,
@@ -137,7 +137,7 @@ const PRODUCTS = [
     ]
   },
   {
-  id: 12,
+    id: 12,
     name: 'GORRA ANGELS CLASSIC',
     category: 'Urbanas',
     price: 17960,
@@ -149,7 +149,7 @@ const PRODUCTS = [
     ]
   },
   {
-  id: 13,
+    id: 13,
     name: 'GORRA FORMULA 1 ROJA',
     category: 'Formula 1',
     price: 17960,
@@ -163,7 +163,7 @@ const PRODUCTS = [
     ]
   },
   {
-  id: 14,
+    id: 14,
     name: 'GORRA MERCEDES BENZ',
     category: 'Formula 1',
     price: 17960,
@@ -175,8 +175,8 @@ const PRODUCTS = [
       'https://i.postimg.cc/d1zD98jr/IMG-0502.png'
     ]
   },
-   {
-  id: 15,
+  {
+    id: 15,
     name: 'GORRA FERRARI BLANCA',
     category: 'Formula 1',
     price: 18960,
@@ -188,19 +188,19 @@ const PRODUCTS = [
     ]
   },
   {
-  id: 16,
+    id: 16,
     name: 'GORRA AYRTON SENNA',
     category: 'Formula 1',
     price: 18960,
     badge: 'LIMITED',
-    desc: 'Gorra Ayrton Senna Premium. Visera curva, estructura rígida, malla reistente y hebilla trasera regulable.',
+    desc: 'Gorra Ayrton Senna Premium. Visera curva, estructura rígida, malla resistente y hebilla trasera regulable.',
     images: [
       'https://i.postimg.cc/pTkqhLQj/IMG-0505.png',
       'https://i.postimg.cc/j5vZwS67/IMG-0506.png'
     ]
   },
-   {
-  id: 17,
+  {
+    id: 17,
     name: 'GORRA ALPINESTARS',
     category: 'Formula 1',
     price: 17960,
@@ -209,7 +209,7 @@ const PRODUCTS = [
     images: [
       'https://i.postimg.cc/gj2G9sHJ/IMG-0507.jpg'
     ]
-  },
+  }
 ];
 
 let cart = JSON.parse(localStorage.getItem('litoral_cart')) || [];
@@ -217,7 +217,6 @@ let activeCategory = 'TODAS';
 let currentModalProduct = null;
 let currentModalImgIndex = 0;
 
-// Renderizado inicial
 function initStore() {
   renderCategories();
   renderProducts();
@@ -247,16 +246,16 @@ function renderCategories() {
   `).join('');
 }
 
-function filterCategory(cat) {
+window.filterCategory = function(cat) {
   activeCategory = cat;
   renderCategories();
   renderProducts();
-}
+};
 
-function filterAndGo(cat) {
+window.filterAndGo = function(cat) {
   switchTab('productos');
   filterCategory(cat);
-}
+};
 
 function renderProducts(searchQuery = '') {
   const catalogGrid = document.getElementById('catalog-grid');
@@ -281,7 +280,7 @@ function renderProducts(searchQuery = '') {
         <p class="prod-desc">${p.desc}</p>
         <div class="prod-action" onclick="event.stopPropagation()">
           <span class="prod-price">${CONFIG.currencySymbol}${p.price.toLocaleString('es-AR')}</span>
-          <button type="button" class="btn-add" onclick="addToCart(${p.id})">AGREGAR</button>
+          <button type="button" class="btn-add" onclick="addToCart(${p.id}); toggleCart(true);">AGREGAR</button>
         </div>
       </div>
     </div>
@@ -292,19 +291,19 @@ function renderProducts(searchQuery = '') {
   }
 
   if (featuredGrid) {
-    featuredGrid.innerHTML = PRODUCTS.slice(0, 4).map(generateCardHTML).join('');
+    featuredGrid.innerHTML = PRODUCTS.slice(0, 6).map(generateCardHTML).join('');
   }
 }
 
-function handleSearch() {
+window.handleSearch = function() {
   const query = document.getElementById('searchInput').value;
   if (query.trim() !== '') {
     switchTab('productos');
   }
   renderProducts(query);
-}
+};
 
-// Modal y Galería Deslizable
+// Modal y Slider
 window.openProductModal = function(prodId) {
   const product = PRODUCTS.find(p => p.id === prodId);
   if (!product) return;
@@ -316,6 +315,13 @@ window.openProductModal = function(prodId) {
   document.getElementById('modalTitle').innerText = product.name;
   document.getElementById('modalPrice').innerText = `${CONFIG.currencySymbol}${product.price.toLocaleString('es-AR')}`;
   document.getElementById('modalDesc').innerText = product.desc;
+
+  const prevBtn = document.querySelector('.slider-btn.prev');
+  const nextBtn = document.querySelector('.slider-btn.next');
+  const hasMultiple = product.images && product.images.length > 1;
+
+  if (prevBtn) prevBtn.style.display = hasMultiple ? 'flex' : 'none';
+  if (nextBtn) nextBtn.style.display = hasMultiple ? 'flex' : 'none';
 
   const addBtn = document.getElementById('modalAddBtn');
   addBtn.onclick = () => {
@@ -332,7 +338,7 @@ window.openProductModal = function(prodId) {
 
 function updateModalImage() {
   const mainImg = document.getElementById('modalMainImg');
-  if (currentModalProduct && currentModalProduct.images.length > 0) {
+  if (currentModalProduct && currentModalProduct.images && currentModalProduct.images.length > 0) {
     mainImg.src = currentModalProduct.images[currentModalImgIndex];
   }
   
@@ -344,7 +350,7 @@ function updateModalImage() {
 
 function renderModalThumbs() {
   const thumbsContainer = document.getElementById('modalThumbs');
-  if (!currentModalProduct || currentModalProduct.images.length <= 1) {
+  if (!currentModalProduct || !currentModalProduct.images || currentModalProduct.images.length <= 1) {
     thumbsContainer.innerHTML = '';
     return;
   }
@@ -355,18 +361,19 @@ function renderModalThumbs() {
 }
 
 window.setModalImg = function(index) {
+  if (!currentModalProduct || !currentModalProduct.images) return;
   currentModalImgIndex = index;
   updateModalImage();
 };
 
 window.nextModalImg = function() {
-  if (!currentModalProduct) return;
+  if (!currentModalProduct || !currentModalProduct.images || currentModalProduct.images.length <= 1) return;
   currentModalImgIndex = (currentModalImgIndex + 1) % currentModalProduct.images.length;
   updateModalImage();
 };
 
 window.prevModalImg = function() {
-  if (!currentModalProduct) return;
+  if (!currentModalProduct || !currentModalProduct.images || currentModalProduct.images.length <= 1) return;
   currentModalImgIndex = (currentModalImgIndex - 1 + currentModalProduct.images.length) % currentModalProduct.images.length;
   updateModalImage();
 };
@@ -376,7 +383,7 @@ window.closeProductModal = function(e) {
   document.getElementById('productModal').classList.remove('open');
 };
 
-// Pestañas
+// Navegación
 window.switchTab = function(tabName) {
   ['inicio', 'productos', 'contacto'].forEach(tab => {
     const view = document.getElementById(`view-${tab}`);
