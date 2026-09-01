@@ -1,10 +1,8 @@
-// CONFIGURACIÓN DE TU TIENDA LITORAL CLUB
 const CONFIG = {
   whatsappNumber: '5493447542312',
   currencySymbol: '$',
 };
 
-// CATÁLOGO DE PRODUCTOS
 const PRODUCTS = [
   {
     id: 1,
@@ -12,11 +10,10 @@ const PRODUCTS = [
     category: 'Trucker',
     price: 18500,
     badge: 'BEST SELLER',
-    desc: 'Trucker clásica con frente acolchado, bordado frontal de alta densidad y malla respirable premium.',
+    desc: 'Trucker clásica con frente acolchado, bordado frontal de alta densidad y malla respirable.',
     images: [
       'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80',
-      'https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=800&q=80',
-      'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=800&q=80'
+      'https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=800&q=80'
     ]
   },
   {
@@ -25,7 +22,7 @@ const PRODUCTS = [
     category: 'Snapback',
     price: 21000,
     badge: 'NUEVO DROP',
-    desc: 'Snapback estructura rígida de 6 paneles, visera plana con sticker de autenticidad y calce streetwear.',
+    desc: 'Snapback rígida de 6 paneles con visera plana y calce streetwear.',
     images: [
       'https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=800&q=80',
       'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80'
@@ -37,22 +34,20 @@ const PRODUCTS = [
     category: 'Vintage',
     price: 17500,
     badge: 'LIMITED',
-    desc: 'Algodón 100% gastado estilo vintage, visera curva y hebilla metálica trasera regulable.',
+    desc: 'Algodón gastado estilo retro con visera curva y hebilla regulable.',
     images: [
-      'https://images.unsplash.com/photo-1521369909029-2afed882baee?w=800&q=80',
-      'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80'
+      'https://images.unsplash.com/photo-1521369909029-2afed882baee?w=800&q=80'
     ]
   },
   {
     id: 4,
-    name: 'TRUCKER BEIGE & BROWN SPECIAL',
+    name: 'TRUCKER BEIGE & BROWN',
     category: 'Trucker',
     price: 19500,
     badge: 'DROP 2026',
-    desc: 'Combinación bicolor en tonos tierra, visera semicurva y etiqueta tejida lateral.',
+    desc: 'Combinación bicolor en tonos tierra con visera semicurva.',
     images: [
-      'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=800&q=80',
-      'https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=800&q=80'
+      'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=800&q=80'
     ]
   }
 ];
@@ -61,19 +56,18 @@ let cart = JSON.parse(localStorage.getItem('litoral_cart')) || [];
 let activeCategory = 'TODAS';
 let currentModalProduct = null;
 let currentModalImgIndex = 0;
-let toastTimeout = null;
 
 function initStore() {
   renderCategories();
   renderProducts();
   updateCartUI();
 
-  const waContact = document.getElementById('wa-contact-link');
+  const waLink = document.getElementById('wa-contact-link');
   const waFloating = document.getElementById('wa-floating-btn');
-  const waMsg = encodeURIComponent('¡Hola Litoral Club! Quería hacer una consulta sobre los productos.');
-
-  if (waContact) waContact.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${waMsg}`;
-  if (waFloating) waFloating.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${waMsg}`;
+  const waUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent('Hola Litoral Club! Quería consultar por las gorras.')}`;
+  
+  if (waLink) waLink.href = waUrl;
+  if (waFloating) waFloating.href = waUrl;
 }
 
 if (document.readyState === 'loading') {
@@ -128,30 +122,23 @@ function renderProducts(searchQuery = '') {
         <p class="prod-desc">${p.desc}</p>
         <div class="prod-action" onclick="event.stopPropagation()">
           <span class="prod-price">${CONFIG.currencySymbol}${p.price.toLocaleString('es-AR')}</span>
-          <button type="button" class="btn-add" onclick="addToCart(${p.id})">AGREGAR</button>
+          <button type="button" class="btn-add" onclick="addToCart(${p.id}); toggleCart(true);">AGREGAR</button>
         </div>
       </div>
     </div>
   `;
 
-  if (catalogGrid) {
-    catalogGrid.innerHTML = filtered.map(generateCardHTML).join('');
-  }
-
-  if (featuredGrid) {
-    featuredGrid.innerHTML = PRODUCTS.slice(0, 4).map(generateCardHTML).join('');
-  }
+  if (catalogGrid) catalogGrid.innerHTML = filtered.map(generateCardHTML).join('');
+  if (featuredGrid) featuredGrid.innerHTML = PRODUCTS.slice(0, 4).map(generateCardHTML).join('');
 }
 
 function handleSearch() {
   const query = document.getElementById('searchInput').value;
-  if (query.trim() !== '') {
-    switchTab('productos');
-  }
+  if (query.trim() !== '') switchTab('productos');
   renderProducts(query);
 }
 
-// Modal y Galería Deslizable (Corregido y vinculado al ámbito global)
+// Modal
 window.openProductModal = function(prodId) {
   const product = PRODUCTS.find(p => p.id === prodId);
   if (!product) return;
@@ -164,18 +151,18 @@ window.openProductModal = function(prodId) {
   document.getElementById('modalPrice').innerText = `${CONFIG.currencySymbol}${product.price.toLocaleString('es-AR')}`;
   document.getElementById('modalDesc').innerText = product.desc;
 
-  // Ocultar flechas si el producto tiene solo 1 imagen
   const prevBtn = document.querySelector('.slider-btn.prev');
   const nextBtn = document.querySelector('.slider-btn.next');
   const hasMultiple = product.images && product.images.length > 1;
 
-  if (prevBtn) prevBtn.style.display = hasMultiple ? 'flex' : 'none';
-  if (nextBtn) nextBtn.style.display = hasMultiple ? 'flex' : 'none';
+  if (prevBtn) prevBtn.style.display = hasMultiple ? 'block' : 'none';
+  if (nextBtn) nextBtn.style.display = hasMultiple ? 'block' : 'none';
 
   const addBtn = document.getElementById('modalAddBtn');
   addBtn.onclick = () => {
     addToCart(product.id);
     closeProductModal();
+    toggleCart(true);
   };
 
   updateModalImage();
@@ -186,19 +173,17 @@ window.openProductModal = function(prodId) {
 
 function updateModalImage() {
   const mainImg = document.getElementById('modalMainImg');
-  if (currentModalProduct && currentModalProduct.images && currentModalProduct.images.length > 0) {
+  if (currentModalProduct && currentModalProduct.images.length > 0) {
     mainImg.src = currentModalProduct.images[currentModalImgIndex];
   }
   
   const thumbs = document.querySelectorAll('.slider-thumb-item');
-  thumbs.forEach((th, idx) => {
-    th.classList.toggle('active', idx === currentModalImgIndex);
-  });
+  thumbs.forEach((th, idx) => th.classList.toggle('active', idx === currentModalImgIndex));
 }
 
 function renderModalThumbs() {
   const thumbsContainer = document.getElementById('modalThumbs');
-  if (!currentModalProduct || !currentModalProduct.images || currentModalProduct.images.length <= 1) {
+  if (!currentModalProduct || currentModalProduct.images.length <= 1) {
     thumbsContainer.innerHTML = '';
     return;
   }
@@ -208,20 +193,19 @@ function renderModalThumbs() {
   `).join('');
 }
 
-window.setModalImg = function(index) {
-  if (!currentModalProduct || !currentModalProduct.images) return;
-  currentModalImgIndex = index;
+window.setModalImg = function(idx) {
+  currentModalImgIndex = idx;
   updateModalImage();
 };
 
 window.nextModalImg = function() {
-  if (!currentModalProduct || !currentModalProduct.images || currentModalProduct.images.length <= 1) return;
+  if (!currentModalProduct) return;
   currentModalImgIndex = (currentModalImgIndex + 1) % currentModalProduct.images.length;
   updateModalImage();
 };
 
 window.prevModalImg = function() {
-  if (!currentModalProduct || !currentModalProduct.images || currentModalProduct.images.length <= 1) return;
+  if (!currentModalProduct) return;
   currentModalImgIndex = (currentModalImgIndex - 1 + currentModalProduct.images.length) % currentModalProduct.images.length;
   updateModalImage();
 };
@@ -242,21 +226,6 @@ window.switchTab = function(tabName) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
-// Toast de confirmación
-function showToast(msg) {
-  const toast = document.getElementById('toast');
-  const toastMsg = document.getElementById('toast-msg');
-  if (!toast) return;
-
-  toastMsg.innerText = msg;
-  toast.classList.add('show');
-
-  clearTimeout(toastTimeout);
-  toastTimeout = setTimeout(() => {
-    toast.classList.remove('show');
-  }, 2400);
-}
-
 // Carrito
 window.addToCart = function(prodId) {
   const item = PRODUCTS.find(p => p.id === prodId);
@@ -270,7 +239,6 @@ window.addToCart = function(prodId) {
 
   saveCart();
   updateCartUI();
-  showToast(`${item.name} sumada al pedido`);
 };
 
 window.changeQty = function(prodId, delta) {
@@ -278,9 +246,7 @@ window.changeQty = function(prodId, delta) {
   if (!item) return;
 
   item.qty += delta;
-  if (item.qty <= 0) {
-    cart = cart.filter(c => c.id !== prodId);
-  }
+  if (item.qty <= 0) cart = cart.filter(c => c.id !== prodId);
 
   saveCart();
   updateCartUI();
@@ -331,12 +297,8 @@ window.handleDrawerBackdrop = function(e) {
   if (e.target.id === 'cart-drawer') toggleCart(false);
 };
 
-// WhatsApp Checkout con link de fotos para identificar modelos
 window.checkoutWhatsApp = function() {
-  if (cart.length === 0) {
-    alert('Tu carrito está vacío.');
-    return;
-  }
+  if (cart.length === 0) return;
 
   let text = '⚡ *NUEVO PEDIDO - LITORAL CLUB* ⚡\n\n';
   let total = 0;
@@ -345,14 +307,11 @@ window.checkoutWhatsApp = function() {
     const sub = item.price * item.qty;
     total += sub;
     text += `• *${item.name}* x${item.qty} — $${sub.toLocaleString('es-AR')}\n`;
-    if (item.images && item.images.length > 0) {
-      text += `  Foto: ${item.images[0]}\n`;
-    }
   });
 
   text += `\n*TOTAL:* $${total.toLocaleString('es-AR')}\n`;
   text += '---------------------------------\n';
-  text += '¡Hola! Quiero coordinar el pago y el envío para este pedido.';
+  text += 'Hola! Quiero coordinar el pago y el envío para este pedido.';
 
   window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
 };
