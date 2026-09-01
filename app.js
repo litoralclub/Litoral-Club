@@ -151,7 +151,7 @@ function handleSearch() {
   renderProducts(query);
 }
 
-// Modal y Galería
+// Modal y Galería Deslizable (Corregido y vinculado al ámbito global)
 window.openProductModal = function(prodId) {
   const product = PRODUCTS.find(p => p.id === prodId);
   if (!product) return;
@@ -163,6 +163,14 @@ window.openProductModal = function(prodId) {
   document.getElementById('modalTitle').innerText = product.name;
   document.getElementById('modalPrice').innerText = `${CONFIG.currencySymbol}${product.price.toLocaleString('es-AR')}`;
   document.getElementById('modalDesc').innerText = product.desc;
+
+  // Ocultar flechas si el producto tiene solo 1 imagen
+  const prevBtn = document.querySelector('.slider-btn.prev');
+  const nextBtn = document.querySelector('.slider-btn.next');
+  const hasMultiple = product.images && product.images.length > 1;
+
+  if (prevBtn) prevBtn.style.display = hasMultiple ? 'flex' : 'none';
+  if (nextBtn) nextBtn.style.display = hasMultiple ? 'flex' : 'none';
 
   const addBtn = document.getElementById('modalAddBtn');
   addBtn.onclick = () => {
@@ -178,7 +186,7 @@ window.openProductModal = function(prodId) {
 
 function updateModalImage() {
   const mainImg = document.getElementById('modalMainImg');
-  if (currentModalProduct && currentModalProduct.images.length > 0) {
+  if (currentModalProduct && currentModalProduct.images && currentModalProduct.images.length > 0) {
     mainImg.src = currentModalProduct.images[currentModalImgIndex];
   }
   
@@ -190,7 +198,7 @@ function updateModalImage() {
 
 function renderModalThumbs() {
   const thumbsContainer = document.getElementById('modalThumbs');
-  if (!currentModalProduct || currentModalProduct.images.length <= 1) {
+  if (!currentModalProduct || !currentModalProduct.images || currentModalProduct.images.length <= 1) {
     thumbsContainer.innerHTML = '';
     return;
   }
@@ -201,18 +209,19 @@ function renderModalThumbs() {
 }
 
 window.setModalImg = function(index) {
+  if (!currentModalProduct || !currentModalProduct.images) return;
   currentModalImgIndex = index;
   updateModalImage();
 };
 
 window.nextModalImg = function() {
-  if (!currentModalProduct) return;
+  if (!currentModalProduct || !currentModalProduct.images || currentModalProduct.images.length <= 1) return;
   currentModalImgIndex = (currentModalImgIndex + 1) % currentModalProduct.images.length;
   updateModalImage();
 };
 
 window.prevModalImg = function() {
-  if (!currentModalProduct) return;
+  if (!currentModalProduct || !currentModalProduct.images || currentModalProduct.images.length <= 1) return;
   currentModalImgIndex = (currentModalImgIndex - 1 + currentModalProduct.images.length) % currentModalProduct.images.length;
   updateModalImage();
 };
