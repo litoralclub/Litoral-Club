@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Litoral Club | Headwear & Streetwear</title>
-  <link rel="stylesheet" href="style.css?v=4.0" />
+  <title>Litoral Club | Headwear</title>
+  <link rel="stylesheet" href="style.css?v=5.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
 
-  <!-- Barra Superior con texto continuo -->
+  <!-- Barra Superior -->
   <div class="top-bar">
     <marquee behavior="scroll" direction="left" scrollamount="6">
-      ⚡ ENVIOS A TODO EL PAIS • COMPRA DIRECTA POR WHATSAPP • LITORAL CLUB HEADWEAR • ENVIOS A TODO EL PAIS • COMPRA DIRECTA POR WHATSAPP • LITORAL CLUB HEADWEAR •
+      ⚡ ENVIOS A TODO EL PAIS • COMPRA DIRECTA POR WHATSAPP • LITORAL CLUB HEADWEAR • ENVIOS A TODO EL PAIS • COMPRA DIRECTA POR WHATSAPP •
     </marquee>
   </div>
 
-  <!-- Header / Navbar -->
+  <!-- Navbar -->
   <header class="header-nav">
     <div class="logo-left" onclick="switchTab('inicio')">
       <div class="brand-title">LITORAL CLUB</div>
@@ -34,12 +34,7 @@
     <div class="nav-right">
       <div class="search-box">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input 
-          type="text" 
-          id="searchInput" 
-          placeholder="BUSCAR..." 
-          oninput="handleSearch()"
-        />
+        <input type="text" id="searchInput" placeholder="BUSCAR..." oninput="handleSearch()" />
       </div>
 
       <button class="cart-btn" onclick="toggleCart(true)">
@@ -49,43 +44,43 @@
     </div>
   </header>
 
-  <!-- ==================== PESTAÑA 1: INICIO ==================== -->
+  <!-- PESTAÑA INICIO -->
   <main id="view-inicio" class="tab-view">
     <section class="hero-banner">
-      <img src="fondo-banner.jpeg" class="hero-bg-img">
+      <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=1600&q=80" alt="Banner" class="hero-bg-img">
       <div class="hero-content">
-        <span class="hero-tag">DROP EXCLUSIVO 2026</span>
+        <span class="hero-tag">DROP EXCLUSIVO</span>
         <h1 class="hero-title">LITORAL CLUB COLLECTION</h1>
-        <p class="hero-desc">Gorras Snapback, Dad Caps y Truckers diseñadas para la cultura urbana y streetwear.</p>
-        <button class="btn-dc" onclick="switchTab('productos')">EXPLORAR CATALOGO</button>
+        <p class="hero-desc">Gorras Snapback, Dad Caps y Truckers de diseño urbano.</p>
+        <button class="btn-dc" onclick="switchTab('productos')">VER CATÁLOGO</button>
       </div>
     </section>
 
     <section class="promo-grid">
       <div class="promo-card" onclick="filterAndGo('Trucker')">
-        <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80" alt="Trucker Caps">
+        <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80" alt="Trucker">
         <div class="promo-info">
-          <h3>LINEA TRUCKER</h3>
+          <h3>LÍNEA TRUCKER</h3>
           <p>Malla reforzada & parches bordados</p>
         </div>
       </div>
       <div class="promo-card" onclick="filterAndGo('Snapback')">
         <img src="https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=800&q=80" alt="Snapbacks">
         <div class="promo-info">
-          <h3>SNAPBACKS CLÁSICAS</h3>
-          <p>Visera plana con ajuste personalizado</p>
+          <h3>SNAPBACKS</h3>
+          <p>Visera plana con ajuste clásico</p>
         </div>
       </div>
     </section>
 
     <div class="section-header">
-      <h2>DESTACADOS DEL CLUB</h2>
+      <h2>DESTACADOS</h2>
       <a href="javascript:void(0)" onclick="switchTab('productos')" class="see-all-link">VER TODO</a>
     </div>
     <div id="featured-grid" class="products-grid"></div>
   </main>
 
-  <!-- ==================== PESTAÑA 2: PRODUCTOS ==================== -->
+  <!-- PESTAÑA PRODUCTOS -->
   <main id="view-productos" class="tab-view" style="display: none;">
     <div class="section-header" style="padding-top: 1.5rem;">
       <h2>CATÁLOGO DE GORRAS</h2>
@@ -94,66 +89,27 @@
     <div id="catalog-grid" class="products-grid"></div>
   </main>
 
-  <!-- ==================== PESTAÑA 3: CONTACTO ==================== -->
+  <!-- PESTAÑA CONTACTO -->
   <main id="view-contacto" class="tab-view" style="display: none;">
     <div class="contact-container">
-      <h2>LITORAL CLUB CUSTOMER CARE</h2>
-      <p>Consultanos disponibilidad, ventas por mayor o pedidos especiales directamente con nuestro equipo.</p>
+      <h2>LITORAL CLUB</h2>
+      <p>Hacé tu pedido directo o consultanos por ventas mayoristas.</p>
       <div class="contact-grid">
         <a id="wa-contact-link" href="#" target="_blank" class="contact-link-btn wa">
-          <i class="fa-brands fa-whatsapp"></i> ATENCIÓN POR WHATSAPP
-        </a>
-        <a href="https://instagram.com" target="_blank" class="contact-link-btn ig">
-          <i class="fa-brands fa-instagram"></i> SEGUINOS EN INSTAGRAM
+          <i class="fa-brands fa-whatsapp"></i> HABLAR POR WHATSAPP
         </a>
       </div>
     </div>
   </main>
 
-  <!-- ==================== FOOTER ==================== -->
-  <footer class="main-footer">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4>LITORAL CLUB</h4>
-        <p>Headwear & streetwear de calidad premium. Diseñado y distribuido para todo el país.</p>
-      </div>
-      <div class="footer-col">
-        <h4>PAGOS Y ENVÍOS</h4>
-        <div class="footer-badges">
-          <span><i class="fa-solid fa-truck-fast"></i> Envíos a todo el país</span>
-          <span><i class="fa-solid fa-money-bill-transfer"></i> Transferencia Bancaria</span>
-          <span><i class="fa-solid fa-wallet"></i> Mercado Pago</span>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>ATENCIÓN</h4>
-        <p>Lunes a Sábados de 9:00 a 20:00 hs vía WhatsApp oficial.</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 Litoral Club. Todos los derechos reservados.</p>
-    </div>
-  </footer>
-
-  <!-- ==================== BOTÓN FLOTANTE WHATSAPP ==================== -->
-  <a id="wa-floating-btn" href="#" target="_blank" class="floating-wa" title="Escribinos por WhatsApp">
-    <i class="fa-brands fa-whatsapp"></i>
-  </a>
-
-  <!-- ==================== TOAST NOTIFICATION ==================== -->
-  <div id="toast" class="toast">
-    <i class="fa-solid fa-check"></i>
-    <span id="toast-msg">Gorra agregada al pedido</span>
-  </div>
-
-  <!-- ==================== MODAL DETALLE DE PRODUCTO ==================== -->
+  <!-- MODAL DE PRODUCTO (CON GALERÍA) -->
   <div class="modal-backdrop" id="productModal" onclick="closeProductModal(event)">
     <div class="modal-container" onclick="event.stopPropagation()">
       <button class="close-modal" onclick="closeProductModal()">&times;</button>
       
       <div class="modal-gallery">
         <div class="slider-main">
-          <img id="modalMainImg" src="" alt="Gorra Litoral Club">
+          <img id="modalMainImg" src="" alt="Gorra">
           <button class="slider-btn prev" onclick="prevModalImg()">&#10094;</button>
           <button class="slider-btn next" onclick="nextModalImg()">&#10095;</button>
         </div>
@@ -162,9 +118,9 @@
 
       <div class="modal-details">
         <span class="modal-category" id="modalCategory">CATEGORÍA</span>
-        <h2 class="modal-title" id="modalTitle">NOMBRE DE LA GORRA</h2>
+        <h2 class="modal-title" id="modalTitle">NOMBRE</h2>
         <div class="modal-price" id="modalPrice">$0</div>
-        <p class="modal-desc" id="modalDesc">Descripción</p>
+        <p class="modal-desc" id="modalDesc">Descripción...</p>
         
         <button class="btn-modal-add" id="modalAddBtn">
           <i class="fa-solid fa-cart-plus"></i> AGREGAR AL CARRITO
@@ -173,7 +129,7 @@
     </div>
   </div>
 
-  <!-- ==================== DRAWER LATERAL DEL CARRITO ==================== -->
+  <!-- CARRITO LATERAL -->
   <div class="cart-drawer" id="cart-drawer" onclick="handleDrawerBackdrop(event)">
     <div class="drawer-content">
       <div class="drawer-header">
@@ -193,6 +149,11 @@
     </div>
   </div>
 
-  <script src="app.js?v=3.0"></script>
+  <!-- Botón WhatsApp flotante -->
+  <a id="wa-floating-btn" href="#" target="_blank" class="floating-wa">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <script src="app.js?v=5.0"></script>
 </body>
 </html>
