@@ -4,229 +4,76 @@ const CONFIG = {
   currencySymbol: '$',
 };
 
-// CATÁLOGO CON GALERÍA DE FOTOS
+// CATÁLOGO DE PRODUCTOS
 const PRODUCTS = [
   {
     id: 1,
-    name: 'GORRA VINTAGE ROUTE 66',
-    category: 'Vintage',
-    price: 13320,
+    name: 'GORRA TRUCKER BLACK ICON',
+    category: 'Trucker',
+    price: 18500,
     badge: 'BEST SELLER',
-    desc: 'Gorra vintage Route 66 tipo baseball, bordado frontal de alta densidad premium. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
+    desc: 'Trucker clásica con frente acolchado, bordado frontal de alta densidad y malla respirable premium.',
     images: [
-      'https://i.postimg.cc/dVyTM588/IMG-0343.png',
-      'https://i.postimg.cc/nhDQ83v4/IMG-0341.png',
-      'https://i.postimg.cc/L81ZdxzB/IMG-0342.png'
+      'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80',
+      'https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=800&q=80',
+      'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=800&q=80'
     ]
   },
   {
     id: 2,
-    name: 'GORRA VINTAGE ORLANDO',
-    category: 'Vintage',
-    price: 13320,
+    name: 'SNAPBACK LITORAL CORE WHITE',
+    category: 'Snapback',
+    price: 21000,
     badge: 'NUEVO DROP',
-    desc: 'Gorra vintage Orlando tipo baseball, bordado frontal y lateral de alta densidad premium. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
+    desc: 'Snapback estructura rígida de 6 paneles, visera plana con sticker de autenticidad y calce streetwear.',
     images: [
-      'https://i.postimg.cc/j54kv43V/orlando-1.webp',
-      'https://i.postimg.cc/G2C5k5K3/orlando-2.webp',
-      'https://i.postimg.cc/63f1zfjk/orlando-3.webp'
+      'https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=800&q=80',
+      'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80'
     ]
   },
   {
     id: 3,
-    name: 'GORRA VINTAGE USA',
+    name: 'DAD CAP VINTAGE WASHED',
     category: 'Vintage',
-    price: 13320,
+    price: 17500,
     badge: 'LIMITED',
-    desc: 'Gorra vintage USA tipo baseball. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
+    desc: 'Algodón 100% gastado estilo vintage, visera curva y hebilla metálica trasera regulable.',
     images: [
-      'https://i.postimg.cc/NfhK66hG/IMG-0339.jpg',
-      'https://i.postimg.cc/MKkn77kK/IMG-0440.jpg'
+      'https://images.unsplash.com/photo-1521369909029-2afed882baee?w=800&q=80',
+      'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80'
     ]
   },
   {
     id: 4,
-    name: 'GORRA VINTAGE MIAMI FLORIDA',
-    category: 'Vintage',
-    price: 13320,
-    badge: 'LIMITED',
-    desc: 'Gorra vintage Miami Florida. Combinación bicolor. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
+    name: 'TRUCKER BEIGE & BROWN SPECIAL',
+    category: 'Trucker',
+    price: 19500,
+    badge: 'DROP 2026',
+    desc: 'Combinación bicolor en tonos tierra, visera semicurva y etiqueta tejida lateral.',
     images: [
-      'https://i.postimg.cc/VLbj1swD/IMG-0441.webp',
-      'https://i.postimg.cc/BQ1xsZ3m/IMG-0442.webp',
-      'https://i.postimg.cc/Yqm1k278/IMG-0443.webp',
-      'https://i.postimg.cc/qMC80BrL/IMG-0444.webp'
+      'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=800&q=80',
+      'https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=800&q=80'
     ]
-  },
-  {
-    id: 5,
-    name: 'GORRA VINTAGE ORIGINAL 77',
-    category: 'Vintage',
-    price: 13320,
-    badge: 'LIMITED',
-    desc: 'Gorra vintage Original 77. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
-    images: [
-      'https://i.postimg.cc/zvT2yCh9/IMG-0344.png',
-      'https://i.postimg.cc/Y0QDv6F5/IMG-0345.png',
-      'https://i.postimg.cc/VvXZJqMP/IMG-0346.png'
-    ]
-  },
-  {
-    id: 7,
-    name: 'GORRA VINTAGE ATHLETE',
-    category: 'Vintage',
-    price: 13320,
-    badge: 'LIMITED',
-    desc: 'Gorra vintage Arhlete. Algodón 100% estilo vintage, visera curva y hebilla metálica trasera regulable.',
-    images: [
-      'https://i.postimg.cc/Hn35vj1c/IMG-0449.png',
-      'https://i.postimg.cc/T1QmNhvW/IMG-0450.png'
-    ]
-  },
-  {
-    id: 8,
-    name: 'GORRA NY Yankees',
-    category: 'Urbanas',
-    price: 17960,
-    badge: 'NEW DROP',
-    desc: 'Gorra NY baseball premium. Visera curva, estructura rígida y hebilla trasera regulable.',
-    images: [
-      'https://i.postimg.cc/vH3kfvkd/IMG-0465.webp',
-      'https://i.postimg.cc/RVXyKTyv/IMG-0464.webp',
-      'https://i.postimg.cc/J4PvZQvL/IMG-0466.webp',
-      'https://i.postimg.cc/dt4pr9pq/IMG-0462.webp',
-      'https://i.postimg.cc/wT0ZLkZg/IMG-0461.webp',
-      'https://i.postimg.cc/BQMkHCks/IMG-0463.webp'
-    ]
-  },
-  {
-    id: 9,
-    name: 'GORRA NY BASEBALL',
-    category: 'Urbanas',
-    price: 17960,
-    badge: 'LIMITED',
-    desc: 'Gorra NY Baseball Premium. Visera curva, estructura rígida y hebilla trasera regulable.',
-    images: [
-      'https://i.postimg.cc/yYM9fMwG/IMG-0458.png',
-      'https://i.postimg.cc/ncy7dy65/IMG-0459.png'
-    ]
-  },
-  {
-  id: 10,
-    name: 'GORRA BOSTON BLACK',
-    category: 'Urbanas',
-    price: 17960,
-    badge: 'LIMITED',
-    desc: 'Gorra BOSTON Black Premium. Visera curva, estructura rígida y hebilla trasera regulable.',
-    images: [
-      'https://i.postimg.cc/cHz6vYWT/IMG-0454.jpg',
-      'https://i.postimg.cc/XJPXrFWL/IMG-0455.jpg'
-    ]
-  },
-  {
-  id: 11,
-    name: 'GORRA NY CLASSIC',
-    category: 'Urbanas',
-    price: 17960,
-    badge: 'LIMITED',
-    desc: 'Gorra NY Classic Premium. Visera curva, estructura rígida y hebilla trasera regulable.',
-    images: [
-      'https://i.postimg.cc/85Ys7WGy/IMG-0452.jpg',
-      'https://i.postimg.cc/76Rb574s/IMG-0453.jpg',
-      'https://i.postimg.cc/mDnhPM46/IMG-0451.jpg'
-    ]
-  },
-  {
-  id: 12,
-    name: 'GORRA ANGELS CLASSIC',
-    category: 'Urbanas',
-    price: 17960,
-    badge: 'LIMITED',
-    desc: 'Gorra Angels Classic Premium. Visera curva, estructura rígida y hebilla trasera regulable.',
-    images: [
-      'https://i.postimg.cc/fLPkVXs8/IMG-0283.jpg',
-      'https://i.postimg.cc/C12dRD0m/IMG-0457.jpg'
-    ]
-  },
-  {
-  id: 13,
-    name: 'GORRA FORMULA 1 ROJA',
-    category: 'Formula 1',
-    price: 17960,
-    badge: 'LIMITED',
-    desc: 'Gorra Formula 1 Premium. Visera curva, estructura rígida y hebilla trasera regulable.',
-    images: [
-      'https://i.postimg.cc/Y9Qdpx0R/IMG-0494.png',
-      'https://i.postimg.cc/tTFBXzJB/IMG-0495.png',
-      'https://i.postimg.cc/hjV2S0vM/IMG-0496.png',
-      'https://i.postimg.cc/W30527zX/IMG-0497.png'
-    ]
-  },
-  {
-  id: 14,
-    name: 'GORRA MERCEDES BENZ',
-    category: 'Formula 1',
-    price: 17960,
-    badge: 'PREMIUM',
-    desc: 'Gorra Mercedes Benz azul o negra Premium. Visera curva, estructura rígida y hebilla trasera regulable.',
-    images: [
-      'https://i.postimg.cc/gJfrKvHZ/IMG-0500.png',
-      'https://i.postimg.cc/qRtznmyQ/IMG-0501.png',
-      'https://i.postimg.cc/d1zD98jr/IMG-0502.png'
-    ]
-  },
-   {
-  id: 15,
-    name: 'GORRA FERRARI BLANCA',
-    category: 'Formula 1',
-    price: 18960,
-    badge: 'PREMIUM',
-    desc: 'Gorra Ferrari Premium. Visera curva, estructura rígida y hebilla trasera regulable.',
-    images: [
-      'https://i.postimg.cc/cC0GZCxs/IMG-0503.png',
-      'https://i.postimg.cc/sxsCyxjg/IMG-0504.png'
-    ]
-  },
-  {
-  id: 16,
-    name: 'GORRA AYRTON SENNA',
-    category: 'Formula 1',
-    price: 18960,
-    badge: 'LIMITED',
-    desc: 'Gorra Ayrton Senna Premium. Visera curva, estructura rígida, malla reistente y hebilla trasera regulable.',
-    images: [
-      'https://i.postimg.cc/pTkqhLQj/IMG-0505.png',
-      'https://i.postimg.cc/j5vZwS67/IMG-0506.png'
-    ]
-  },
-   {
-  id: 17,
-    name: 'GORRA ALPINESTARS',
-    category: 'Formula 1',
-    price: 17960,
-    badge: 'LIMITED',
-    desc: 'Gorra Alpinestars Premium. Visera curva, estructura rígida y hebilla trasera regulable.',
-    images: [
-      'https://i.postimg.cc/gj2G9sHJ/IMG-0507.jpg'
-    ]
-  },
+  }
 ];
 
 let cart = JSON.parse(localStorage.getItem('litoral_cart')) || [];
 let activeCategory = 'TODAS';
 let currentModalProduct = null;
 let currentModalImgIndex = 0;
+let toastTimeout = null;
 
-// Renderizado inicial
 function initStore() {
   renderCategories();
   renderProducts();
   updateCartUI();
 
-  const waLink = document.getElementById('wa-contact-link');
-  if (waLink) {
-    waLink.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent('¡Hola Litoral Club! Quería consultar por las gorras.')}`;
-  }
+  const waContact = document.getElementById('wa-contact-link');
+  const waFloating = document.getElementById('wa-floating-btn');
+  const waMsg = encodeURIComponent('¡Hola Litoral Club! Quería hacer una consulta sobre los productos.');
+
+  if (waContact) waContact.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${waMsg}`;
+  if (waFloating) waFloating.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${waMsg}`;
 }
 
 if (document.readyState === 'loading') {
@@ -273,7 +120,7 @@ function renderProducts(searchQuery = '') {
     <div class="product-card" onclick="openProductModal(${p.id})">
       <div class="product-thumb">
         ${p.badge ? `<span class="badge-promo">${p.badge}</span>` : ''}
-        <img src="${p.images[0]}" alt="${p.name}" loading="lazy">
+        <img src="${p.images[0]}" alt="${p.name}">
       </div>
       <div class="product-details">
         <span class="prod-category">${p.category}</span>
@@ -304,7 +151,7 @@ function handleSearch() {
   renderProducts(query);
 }
 
-// Modal y Galería Deslizable
+// Modal y Galería
 window.openProductModal = function(prodId) {
   const product = PRODUCTS.find(p => p.id === prodId);
   if (!product) return;
@@ -321,7 +168,6 @@ window.openProductModal = function(prodId) {
   addBtn.onclick = () => {
     addToCart(product.id);
     closeProductModal();
-    toggleCart(true);
   };
 
   updateModalImage();
@@ -387,6 +233,21 @@ window.switchTab = function(tabName) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
+// Toast de confirmación
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toast-msg');
+  if (!toast) return;
+
+  toastMsg.innerText = msg;
+  toast.classList.add('show');
+
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2400);
+}
+
 // Carrito
 window.addToCart = function(prodId) {
   const item = PRODUCTS.find(p => p.id === prodId);
@@ -400,6 +261,7 @@ window.addToCart = function(prodId) {
 
   saveCart();
   updateCartUI();
+  showToast(`${item.name} sumada al pedido`);
 };
 
 window.changeQty = function(prodId, delta) {
@@ -460,6 +322,7 @@ window.handleDrawerBackdrop = function(e) {
   if (e.target.id === 'cart-drawer') toggleCart(false);
 };
 
+// WhatsApp Checkout con link de fotos para identificar modelos
 window.checkoutWhatsApp = function() {
   if (cart.length === 0) {
     alert('Tu carrito está vacío.');
@@ -473,11 +336,14 @@ window.checkoutWhatsApp = function() {
     const sub = item.price * item.qty;
     total += sub;
     text += `• *${item.name}* x${item.qty} — $${sub.toLocaleString('es-AR')}\n`;
+    if (item.images && item.images.length > 0) {
+      text += `  Foto: ${item.images[0]}\n`;
+    }
   });
 
   text += `\n*TOTAL:* $${total.toLocaleString('es-AR')}\n`;
   text += '---------------------------------\n';
-  text += 'Hola! Quiero coordinar el pago y el envío para este pedido.';
+  text += '¡Hola! Quiero coordinar el pago y el envío para este pedido.';
 
   window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
 };
