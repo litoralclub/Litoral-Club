@@ -21,7 +21,6 @@ body {
   color: var(--text-white);
   font-family: var(--font-body);
   overflow-x: hidden;
-  padding-bottom: 80px;
 }
 
 /* 1. Barra Superior Marquesina */
@@ -83,7 +82,6 @@ body {
   margin-top: 2px;
 }
 
-/* Pestañas en el Centro */
 .nav-center {
   display: flex;
   justify-content: center;
@@ -129,7 +127,6 @@ body {
   background: #fff;
 }
 
-/* Herramientas de la Derecha (Buscador y Carrito Fijos) */
 .nav-right {
   display: flex;
   justify-content: flex-end;
@@ -181,7 +178,6 @@ body {
   flex-shrink: 0;
 }
 
-/* Celulares */
 @media (max-width: 768px) {
   .header-nav {
     display: grid;
@@ -193,32 +189,12 @@ body {
     padding: 0.6rem 3%;
   }
 
-  .logo-left {
-    grid-area: logo;
-  }
-
-  .brand-title {
-    font-size: 1.3rem;
-  }
-
-  .nav-right {
-    grid-area: tools;
-    gap: 0.4rem;
-  }
-
-  .search-box {
-    width: 95px;
-    padding: 0.3rem 0.4rem;
-  }
-
-  .search-box input {
-    font-size: 0.7rem;
-  }
-
-  .cart-btn {
-    padding: 0.35rem 0.55rem;
-    font-size: 0.75rem;
-  }
+  .logo-left { grid-area: logo; }
+  .brand-title { font-size: 1.3rem; }
+  .nav-right { grid-area: tools; gap: 0.4rem; }
+  .search-box { width: 95px; padding: 0.3rem 0.4rem; }
+  .search-box input { font-size: 0.7rem; }
+  .cart-btn { padding: 0.35rem 0.55rem; font-size: 0.75rem; }
 
   .nav-center {
     grid-area: menu;
@@ -228,13 +204,8 @@ body {
     padding-top: 0.45rem;
   }
 
-  .nav-center ul {
-    gap: 1.2rem;
-  }
-
-  .nav-link {
-    font-size: 0.78rem;
-  }
+  .nav-center ul { gap: 1.2rem; }
+  .nav-link { font-size: 0.78rem; }
 }
 
 /* ==================== HERO BANNER ==================== */
@@ -310,11 +281,6 @@ body {
   padding: 0.85rem 1.8rem;
   border: none;
   cursor: pointer;
-  transition: background 0.2s;
-}
-
-.btn-dc:hover {
-  background: #e2e2e2;
 }
 
 /* ==================== BANNERS SECUNDARIOS ==================== */
@@ -327,9 +293,7 @@ body {
 }
 
 @media (max-width: 600px) {
-  .promo-grid {
-    grid-template-columns: 1fr;
-  }
+  .promo-grid { grid-template-columns: 1fr; }
 }
 
 .promo-card {
@@ -380,7 +344,7 @@ body {
   text-transform: uppercase;
 }
 
-/* ==================== GRILLA DE PRODUCTOS ==================== */
+/* ==================== GRILLA DE PRODUCTOS (SOLUCIÓN CORTE FOTOS) ==================== */
 .section-header {
   padding: 0 4%;
   display: flex;
@@ -435,7 +399,7 @@ body {
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1.2rem;
   padding: 0 4%;
   margin-bottom: 4rem;
@@ -457,17 +421,27 @@ body {
   border-color: #444;
 }
 
+/* Encaje perfecto de imagen sin recortes */
 .product-thumb {
   position: relative;
   width: 100%;
-  height: 240px;
-  background: #1b1b1b;
+  height: 250px;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
 }
 
 .product-thumb img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* Muestra la gorra 100% entera */
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-thumb img {
+  transform: scale(1.05);
 }
 
 .badge-promo {
@@ -480,6 +454,7 @@ body {
   font-size: 0.65rem;
   text-transform: uppercase;
   padding: 2px 6px;
+  z-index: 2;
 }
 
 .product-details {
@@ -544,7 +519,7 @@ body {
   color: #000;
 }
 
-/* ==================== MODAL DETALLE DE PRODUCTO CON SLIDER ==================== */
+/* ==================== MODAL DETALLE DE PRODUCTO ==================== */
 .modal-backdrop {
   display: none;
   position: fixed;
@@ -557,9 +532,7 @@ body {
   padding: 1rem;
 }
 
-.modal-backdrop.open {
-  display: flex;
-}
+.modal-backdrop.open { display: flex; }
 
 .modal-container {
   background: #121212;
@@ -608,12 +581,15 @@ body {
   background: #000;
   border-radius: 6px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slider-main img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .slider-btn {
@@ -627,12 +603,10 @@ body {
   padding: 0.6rem 0.8rem;
   cursor: pointer;
   border-radius: 4px;
-  transition: background 0.2s;
 }
 
 .slider-btn.prev { left: 8px; }
 .slider-btn.next { right: 8px; }
-.slider-btn:hover { background: #fff; color: #000; }
 
 .slider-thumbs {
   display: flex;
@@ -760,6 +734,110 @@ body {
   border: 1px solid var(--border-dark);
 }
 
+/* ==================== FOOTER ==================== */
+.main-footer {
+  background: #000;
+  border-top: 1px solid var(--border-dark);
+  padding: 3rem 4% 1.5rem;
+  margin-top: 4rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.footer-col h4 {
+  font-family: var(--font-stack);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  margin-bottom: 0.8rem;
+  color: #fff;
+}
+
+.footer-col p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.footer-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-badges span {
+  font-size: 0.78rem;
+  color: #ddd;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid var(--border-dark);
+  padding-top: 1.5rem;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+/* ==================== BOTÓN FLOTANTE WHATSAPP ==================== */
+.floating-wa {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25d366;
+  color: #000;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  z-index: 1500;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.floating-wa:hover {
+  transform: scale(1.1);
+}
+
+/* ==================== TOAST NOTIFICACIÓN ==================== */
+.toast {
+  position: fixed;
+  bottom: 85px;
+  right: 20px;
+  background: #fff;
+  color: #000;
+  padding: 0.75rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(15px);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 3000;
+}
+
+.toast.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
 /* ==================== CARRITO DRAWER ==================== */
 .cart-drawer {
   display: none;
@@ -771,9 +849,7 @@ body {
   backdrop-filter: blur(4px);
 }
 
-.cart-drawer.open {
-  display: flex;
-}
+.cart-drawer.open { display: flex; }
 
 .drawer-content {
   background: #111;
