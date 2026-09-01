@@ -21,7 +21,7 @@ body {
   color: var(--text-white);
   font-family: var(--font-body);
   overflow-x: hidden;
-  padding-bottom: 80px;
+  padding-bottom: 40px;
 }
 
 /* 1. Barra Superior Marquesina */
@@ -129,7 +129,7 @@ body {
   background: #fff;
 }
 
-/* Herramientas de la Derecha (Buscador y Carrito Fijos) */
+/* Herramientas de la Derecha */
 .nav-right {
   display: flex;
   justify-content: flex-end;
@@ -193,32 +193,12 @@ body {
     padding: 0.6rem 3%;
   }
 
-  .logo-left {
-    grid-area: logo;
-  }
-
-  .brand-title {
-    font-size: 1.3rem;
-  }
-
-  .nav-right {
-    grid-area: tools;
-    gap: 0.4rem;
-  }
-
-  .search-box {
-    width: 95px;
-    padding: 0.3rem 0.4rem;
-  }
-
-  .search-box input {
-    font-size: 0.7rem;
-  }
-
-  .cart-btn {
-    padding: 0.35rem 0.55rem;
-    font-size: 0.75rem;
-  }
+  .logo-left { grid-area: logo; }
+  .brand-title { font-size: 1.3rem; }
+  .nav-right { grid-area: tools; gap: 0.4rem; }
+  .search-box { width: 95px; padding: 0.3rem 0.4rem; }
+  .search-box input { font-size: 0.7rem; }
+  .cart-btn { padding: 0.35rem 0.55rem; font-size: 0.75rem; }
 
   .nav-center {
     grid-area: menu;
@@ -228,13 +208,8 @@ body {
     padding-top: 0.45rem;
   }
 
-  .nav-center ul {
-    gap: 1.2rem;
-  }
-
-  .nav-link {
-    font-size: 0.78rem;
-  }
+  .nav-center ul { gap: 1.2rem; }
+  .nav-link { font-size: 0.78rem; }
 }
 
 /* ==================== HERO BANNER ==================== */
@@ -327,9 +302,7 @@ body {
 }
 
 @media (max-width: 600px) {
-  .promo-grid {
-    grid-template-columns: 1fr;
-  }
+  .promo-grid { grid-template-columns: 1fr; }
 }
 
 .promo-card {
@@ -380,7 +353,7 @@ body {
   text-transform: uppercase;
 }
 
-/* ==================== GRILLA DE PRODUCTOS SIMÉTRICA ==================== */
+/* ==================== GRILLA DE PRODUCTOS ==================== */
 .section-header {
   padding: 0 4%;
   display: flex;
@@ -457,30 +430,29 @@ body {
   border-color: #444;
 }
 
-/* Marco simétrico y parejo sin recortes */
+/* Tarjeta con imagen completa y centrada */
 .product-thumb {
   position: relative;
   width: 100%;
-  height: 240px;
+  height: 250px;
   background: #111111;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
+  padding: 10px;
   overflow: hidden;
 }
 
 .product-thumb img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   transition: transform 0.3s ease;
 }
 
 .product-card:hover .product-thumb img {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .badge-promo {
@@ -558,7 +530,7 @@ body {
   color: #000;
 }
 
-/* ==================== MODAL DETALLE DE PRODUCTO CON SLIDER ==================== */
+/* ==================== MODAL DETALLE CON SLIDER ==================== */
 .modal-backdrop {
   display: none;
   position: fixed;
@@ -571,9 +543,7 @@ body {
   padding: 1rem;
 }
 
-.modal-backdrop.open {
-  display: flex;
-}
+.modal-backdrop.open { display: flex; }
 
 .modal-container {
   background: #121212;
@@ -625,13 +595,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
 }
 
 .slider-main img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .slider-btn {
@@ -667,8 +637,7 @@ body {
   border: 2px solid var(--border-dark);
   background: #000;
   cursor: pointer;
-  object-fit: contain;
-  padding: 2px;
+  object-fit: cover;
   opacity: 0.6;
   flex-shrink: 0;
   transition: all 0.2s;
@@ -784,6 +753,62 @@ body {
   border: 1px solid var(--border-dark);
 }
 
+/* ==================== FOOTER ==================== */
+.main-footer {
+  background: #080808;
+  border-top: 1px solid var(--border-dark);
+  padding: 3rem 4% 1.5rem;
+  margin-top: 4rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.footer-col h4 {
+  font-family: var(--font-stack);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  margin-bottom: 0.8rem;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.footer-col p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.footer-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-badges span {
+  font-size: 0.78rem;
+  color: #ddd;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-badges i {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid var(--border-dark);
+  padding-top: 1.5rem;
+  font-size: 0.75rem;
+  color: #666;
+}
+
 /* ==================== CARRITO DRAWER ==================== */
 .cart-drawer {
   display: none;
@@ -795,9 +820,7 @@ body {
   backdrop-filter: blur(4px);
 }
 
-.cart-drawer.open {
-  display: flex;
-}
+.cart-drawer.open { display: flex; }
 
 .drawer-content {
   background: #111;
@@ -907,60 +930,4 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-}
-
-/* ==================== FOOTER ==================== */
-.main-footer {
-  background: #080808;
-  border-top: 1px solid var(--border-dark);
-  padding: 3rem 4% 1.5rem;
-  margin-top: 4rem;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2.5rem;
-}
-
-.footer-col h4 {
-  font-family: var(--font-stack);
-  font-size: 1.1rem;
-  letter-spacing: 1px;
-  margin-bottom: 0.8rem;
-  color: #fff;
-  text-transform: uppercase;
-}
-
-.footer-col p {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-.footer-badges {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.footer-badges span {
-  font-size: 0.78rem;
-  color: #ddd;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.footer-badges i {
-  color: var(--accent);
-}
-
-.footer-bottom {
-  text-align: center;
-  border-top: 1px solid var(--border-dark);
-  padding-top: 1.5rem;
-  font-size: 0.75rem;
-  color: #666;
 }
