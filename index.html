@@ -163,14 +163,24 @@
     </div>
   </div>
 
-  <!-- ==================== DRAWER LATERAL DEL CARRITO ==================== -->
+<!-- ==================== DRAWER LATERAL DEL CARRITO ==================== -->
   <div class="cart-drawer" id="cart-drawer" onclick="handleDrawerBackdrop(event)">
     <div class="drawer-content">
       <div class="drawer-header">
         <h3>TU PEDIDO</h3>
         <span class="close-drawer" onclick="toggleCart(false)">&times;</span>
       </div>
+
+      <!-- Barra de Progreso Envío Gratis -->
+      <div class="free-shipping-box">
+        <p id="shipping-progress-text">Agregá productos para envío gratis</p>
+        <div class="shipping-bar-bg">
+          <div id="shipping-bar-fill" class="shipping-bar-fill"></div>
+        </div>
+      </div>
+
       <div class="drawer-items" id="drawer-items"></div>
+
       <div class="drawer-footer">
         <div class="drawer-total">
           <span>TOTAL:</span>
