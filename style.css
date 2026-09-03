@@ -956,3 +956,55 @@ body {
   transform: scale(1.1);
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
 }
+
+/* ==================== FRANJA DE CONFIANZA ==================== */
+.trust-banner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  padding: 1.5rem 4%;
+  margin-bottom: 3.5rem;
+  background: #121212;
+  border-top: 1px solid var(--border-dark);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.trust-item i {
+  font-size: 1.8rem;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.trust-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.trust-text strong {
+  font-family: var(--font-stack);
+  font-size: 0.95rem;
+  letter-spacing: 0.8px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.trust-text span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
+@media (max-width: 600px) {
+  .trust-banner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 6%;
+  }
+}
