@@ -217,15 +217,18 @@ let activeCategory = 'TODAS';
 let currentModalProduct = null;
 let currentModalImgIndex = 0;
 
+// CÓDIGO NUEVO (ACTIVA CONTACTO Y EL BOTÓN FLOTANTE):
 function initStore() {
   renderCategories();
   renderProducts();
   updateCartUI();
 
   const waLink = document.getElementById('wa-contact-link');
-  if (waLink) {
-    waLink.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent('¡Hola Litoral Club! Quería consultar por las gorras.')}`;
-  }
+  const waFloating = document.getElementById('wa-floating-btn');
+  const waUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent('¡Hola Litoral Club! Quería consultar por las gorras.')}`;
+
+  if (waLink) waLink.href = waUrl;
+  if (waFloating) waFloating.href = waUrl;
 }
 
 if (document.readyState === 'loading') {
