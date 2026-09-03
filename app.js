@@ -2,6 +2,7 @@
 const CONFIG = {
   whatsappNumber: '5493447542312',
   currencySymbol: '$',
+  freeShippingThreshold: 80000,
 };
 
 // CATÁLOGO CON GALERÍA DE FOTOS REAL
@@ -438,6 +439,25 @@ function updateCartUI() {
 
   const drawerTotalEl = document.getElementById('drawer-total-price');
   if (drawerTotalEl) drawerTotalEl.innerText = `${CONFIG.currencySymbol}${totalPrice.toLocaleString('es-AR')}`;
+
+  // Control de la Barra de Envío Gratis
+  const shippingText = document.getElementById('shipping-progress-text');
+  const shippingBar = document.getElementById('shipping-bar-fill');
+
+  if (shippingText && shippingBar) {
+    if (totalPrice === 0) {
+      shippingText.innerHTML = `Envío gratis a partir de ${CONFIG.currencySymbol}${CONFIG.freeShippingThreshold.toLocaleString('es-AR')}`;
+      shippingBar.style.width = '0%';
+    } else if (totalPrice >= CONFIG.freeShippingThreshold) {
+      shippingText.innerHTML = '⚡ ¡GENIAL! TENÉS ENVÍO GRATIS';
+      shippingBar.style.width = '100%';
+    } else {
+      const remaining = CONFIG.freeShippingThreshold - totalPrice;
+      const percentage = Math.min((totalPrice / CONFIG.freeShippingThreshold) * 100, 100);
+      shippingText.innerHTML = `Te faltan <strong>${CONFIG.currencySymbol}${remaining.toLocaleString('es-AR')}</strong> para envío gratis`;
+      shippingBar.style.width = `${percentage}%`;
+    }
+  }
 
   const drawerItems = document.getElementById('drawer-items');
   if (drawerItems) {
